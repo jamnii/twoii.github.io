@@ -4,7 +4,7 @@
   <id>http://192.168.222.128:4001/</id>
   <title>Chirpy</title>
   <subtitle>A minimal, portfolio, sidebar, bootstrap Jekyll theme with responsive web design and focuses on text presentation.</subtitle>
-  <updated>2021-12-18T17:31:39+08:00</updated>
+  <updated>2021-12-18T17:42:45+08:00</updated>
   <author>
     <name>your_full_name</name>
     <uri>http://192.168.222.128:4001/</uri>
@@ -17,6 +17,54 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>Getting Started</title>
+    <link href="http://192.168.222.128:4001/posts/getting-start/" rel="alternate" type="text/html" title="Getting Started" />
+    <published>2019-08-09T20:55:00+08:00</published>
+  
+    <updated>2019-08-09T20:55:00+08:00</updated>
+  
+    <id>http://192.168.222.128:4001/posts/getting-start/</id>
+    <content src="http://192.168.222.128:4001/posts/getting-start/" />
+    <author>
+      <name>{"name"=>"Cotes Chung", "link"=>"https://github.com/cotes2020"}</name>
+    </author>
+
+  
+    
+    <category term="Blogging" />
+    
+    <category term="Tutorial" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Prerequisites
+
+Follow the instructions in the Jekyll Docs to complete the installation of Ruby, RubyGems, Jekyll, and Bundler.
+
+Installation
+
+Creating a New Site
+
+There are two ways to create a new repository for this theme:
+
+
+  Using the Chirpy Starter - Easy to upgrade, isolates irrelevant project files so you can focus on writing.
+  Forking on GitHub - Convenient for custom development, but ...
+    </summary>
+  
+
+  </entry>
 
 </feed>
 
