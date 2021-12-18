@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+<loc>http://192.168.222.128:4001/categories/</loc>
+<lastmod>2021-12-18T17:31:39+08:00</lastmod>
+</url>
+<url>
+<loc>http://192.168.222.128:4001/tags/</loc>
+<lastmod>2021-12-18T17:31:39+08:00</lastmod>
+</url>
+<url>
+<loc>http://192.168.222.128:4001/archives/</loc>
+<lastmod>2021-12-18T17:31:39+08:00</lastmod>
+</url>
+<url>
+<loc>http://192.168.222.128:4001/about/</loc>
+<lastmod>2021-12-18T17:31:39+08:00</lastmod>
+</url>
+<url>
+<loc>http://192.168.222.128:4001/</loc>
+</url>
+</urlset>
