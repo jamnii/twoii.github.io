@@ -317,6 +317,15 @@
       </a>
     </li> <!-- .nav-item -->
     
+    <li class="nav-item">
+      <a href="/link/" class="nav-link">
+        <i class="fa-fw fas fa-tag ml-xl-3 mr-xl-3 unloaded"></i>
+        
+
+        <span>LINK</span>
+      </a>
+    </li> <!-- .nav-item -->
+    
 
   </ul> <!-- ul.nav.flex-column -->
 
@@ -457,50 +466,6 @@
   
 
   
-    
-    
-
-    
-      
-        
-        
-      
-
-      
-      
-
-      
-      
-
-      
-
-    
-      
-
-      
-      
-
-      
-      
-
-      
-
-    
-      
-
-      
-      
-
-      
-      
-
-      
-
-    
-
-    
-
-  
 
   
   
@@ -546,61 +511,6 @@
       
 
     
-      
-
-      
-      
-
-      
-      
-
-      
-
-    
-      
-
-      
-      
-
-      
-      
-
-      
-
-    
-      
-
-      
-      
-
-      
-      
-
-      
-
-    
-      
-
-      
-      
-
-      
-      
-
-      
-
-    
-      
-
-      
-      
-
-      
-      
-
-      
-
-    
 
     
 
@@ -608,6 +518,105 @@
 
   
   
+
+  
+    
+    
+
+    
+      
+        
+        
+      
+
+      
+      
+
+      
+      
+
+      
+
+    
+      
+
+      
+      
+
+      
+      
+
+      
+
+    
+      
+
+      
+      
+
+      
+      
+
+      
+
+    
+      
+
+      
+      
+
+      
+      
+
+      
+
+    
+      
+
+      
+      
+
+      
+      
+
+      
+
+    
+      
+
+      
+      
+
+      
+      
+
+      
+
+    
+      
+
+      
+      
+
+      
+      
+
+      
+
+    
+      
+
+      
+      
+
+      
+      
+
+      
+
+    
+
+    
 
   
 
@@ -729,18 +738,18 @@
 <div class="post-content">
   <p>MySQL 事务主要用于处理操作量大，复杂度高的数据。</p>
 
-<h2 id="1-基础介绍">1. 基础介绍<a href="#1-基础介绍"><i class="fas fa-hashtag"></i></a></h2></h2>
+<h3 id="1-基础介绍">1. 基础介绍<a href="#1-基础介绍"><i class="fas fa-hashtag"></i></a></h3></h3>
 
-<h2 id="2-acid">2. ACID<a href="#2-acid"><i class="fas fa-hashtag"></i></a></h2></h2>
+<h3 id="2-acid">2. ACID<a href="#2-acid"><i class="fas fa-hashtag"></i></a></h3></h3>
 
-<h3 id="atomicity"><code class="language-plaintext highlighter-rouge">Atomicity</code><a href="#atomicity"><i class="fas fa-hashtag"></i></a></h3></h3>
+<h4 id="atomicity"><code class="language-plaintext highlighter-rouge">Atomicity</code><a href="#atomicity"><i class="fas fa-hashtag"></i></a></h4></h4>
 <p><code class="language-plaintext highlighter-rouge">原子性</code>: 一个事务被视为一个不可分割的最小工作单元 一个事务中的所有操作，要么全部完成，要么全部不完成，不会在中间某个环节结束。</p>
 
 <p>事务在执行过程中发生错误，会被回滚到事务开始前的状态，就像这个事务从来没有执行过一样。</p>
 
 <p>原子性关注状态，要么全部成功，要么全部失败，不存在部分成功的状态</p>
 
-<h3 id="consistency"><code class="language-plaintext highlighter-rouge">Consistency</code><a href="#consistency"><i class="fas fa-hashtag"></i></a></h3></h3>
+<h4 id="consistency"><code class="language-plaintext highlighter-rouge">Consistency</code><a href="#consistency"><i class="fas fa-hashtag"></i></a></h4></h4>
 <p><code class="language-plaintext highlighter-rouge">一致性</code>: 在事务开始之前和事务结束以后，数据库数据的一致性约束没有被破坏。 保证在一个事务中的多次操作的数据中间状态,对其他事务不可见的。</p>
 
 <p>因为这些中间状态，是一个过渡状态，与事务的开始状态和事务的结束状态是不一致的，一致性关注数据的可见性，中间状态的数据对外部不可见，只有最初状态和最终状态的数据对外可见。</p>
@@ -755,13 +764,13 @@
 与 `Atomicity` 的区别: 未提交读的隔离级别下是事务内部操作是可见的，明显违背了一致性。
 </pre></td></tr></tbody></table></code></div></div>
 
-<h3 id="isolation"><code class="language-plaintext highlighter-rouge">Isolation</code><a href="#isolation"><i class="fas fa-hashtag"></i></a></h3></h3>
+<h4 id="isolation"><code class="language-plaintext highlighter-rouge">Isolation</code><a href="#isolation"><i class="fas fa-hashtag"></i></a></h4></h4>
 <p><code class="language-plaintext highlighter-rouge">隔离性</code>: 数据库允许多个并发事务同时对数据进行读写和修改的能力。 隔离性可以防止多个事务并发执行时由于交叉执行而导致数据的不一致。</p>
 
-<h3 id="durability"><code class="language-plaintext highlighter-rouge">Durability</code><a href="#durability"><i class="fas fa-hashtag"></i></a></h3></h3>
+<h4 id="durability"><code class="language-plaintext highlighter-rouge">Durability</code><a href="#durability"><i class="fas fa-hashtag"></i></a></h4></h4>
 <p><code class="language-plaintext highlighter-rouge">持久性</code>: 事务处理结束后，对数据的修改就是永久的，即便系统故障也不会丢失。</p>
 
-<h2 id="3-隔离级别">3. 隔离级别<a href="#3-隔离级别"><i class="fas fa-hashtag"></i></a></h2></h2>
+<h3 id="3-隔离级别">3. 隔离级别<a href="#3-隔离级别"><i class="fas fa-hashtag"></i></a></h3></h3>
 
 <p>针对多个事物的数据处理，不同的隔离级别对数据会有不同的影响。</p>
 
@@ -833,7 +842,7 @@ explain sql;
   </li>
 </ul>
 
-<h3 id="read-uncommitted">Read-Uncommitted<a href="#read-uncommitted"><i class="fas fa-hashtag"></i></a></h3></h3>
+<h4 id="read-uncommitted">Read-Uncommitted<a href="#read-uncommitted"><i class="fas fa-hashtag"></i></a></h4></h4>
 <p><strong>读-未提交，有脏读</strong></p>
 
 <p>数据: name = test， A事物更新 name = test2，同时B事物开启，B执行查询name = test2，</p>
@@ -872,7 +881,7 @@ name = test2    此时     B事物 → start → 查询 -&gt; name = test2
 A事物并没有修改成功，但B事物已经返回 name = test2，出现了脏读
 </pre></td></tr></tbody></table></code></div></div>
 
-<h3 id="read-committed">Read-Committed<a href="#read-committed"><i class="fas fa-hashtag"></i></a></h3></h3>
+<h4 id="read-committed">Read-Committed<a href="#read-committed"><i class="fas fa-hashtag"></i></a></h4></h4>
 
 <p><strong>读-已提交,不可重复读</strong></p>
 
@@ -924,7 +933,7 @@ start                   start → 执行 name = test2 → commit.(At1)
 数据会跟着事物修改而改变。
 </pre></td></tr></tbody></table></code></div></div>
 
-<h3 id="repeatable-read">Repeatable-Read<a href="#repeatable-read"><i class="fas fa-hashtag"></i></a></h3></h3>
+<h4 id="repeatable-read">Repeatable-Read<a href="#repeatable-read"><i class="fas fa-hashtag"></i></a></h4></h4>
 
 <p><strong>可重复读</strong></p>
 
@@ -970,7 +979,7 @@ start                   start
 数据不会跟着事物修改而改变。
 </pre></td></tr></tbody></table></code></div></div>
 
-<h3 id="serializable">Serializable<a href="#serializable"><i class="fas fa-hashtag"></i></a></h3></h3>
+<h4 id="serializable">Serializable<a href="#serializable"><i class="fas fa-hashtag"></i></a></h4></h4>
 
 <p><strong>串行化</strong></p>
 
