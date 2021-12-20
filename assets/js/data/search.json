@@ -1,6 +1,21 @@
 [
   
   {
+    "title": "MySQL Transaction",
+    "url": "/posts/mysql-transaction/",
+    "categories": "MySQL",
+    "tags": "transaction",
+    "date": "2021-02-20 16:42:00 +0800",
+    
+
+
+
+
+
+    "snippet": "MySQL 事务主要用于处理操作量大，复杂度高的数据。1. 基础介绍2. ACIDAtomicity原子性: 一个事务被视为一个不可分割的最小工作单元 一个事务中的所有操作，要么全部完成，要么全部不完成，不会在中间某个环节结束。事务在执行过程中发生错误，会被回滚到事务开始前的状态，就像这个事务从来没有执行过一样。原子性关注状态，要么全部成功，要么全部失败，不存在部分成功的状态Consistency一致性: 在事务开始之前和事务结束以后，数据库数据的一致性约束没有被破坏。 保证在一个事务中的多次操作的数据中间状态,对其他事务不可见的。因为这些中间状态，是一个过渡状态，与事务的开始状态和事务的结束状态是不一致的，一致性关注数据的可见性，中间状态的数据对外部不可见，只有最初状态和最终状态的数据对外可见。(memberA 向 memberB 转 100,在其它事物看来,要么 memberA 减少了, 要么 memberB 增加了)不会看到 memberA 减少了, memberB还没有加的情况,这个属于中间状态)与 `Atomicity` 的区别: 未提交读的隔离级别下是事务内部操作是可见的，明显违背了一致性。Isolation隔离性: 数据库允许多个并发事务同时对数据进行读写和修改的能力。 隔离性可以防止多个事务并发执行时由于交叉执行而导致数据的不一致。Durability持久性: 事务处理结束后，对数据的修改就是永久的，即便系统故障也不会丢失。3. 隔离级别针对多个事物的数据处理，不同的隔离级别对数据会有不同的影响。      设置事物隔离级别    show variables like &quot;%isolation%&quot;;&quot;read uncommitted, read committed, repeatable read, serializable&quot;set session transaction isolation level repeatable read;            锁测试    关闭自动提交#show variables like &quot;autocommit&quot;;set session autocommit=0;#开始事物start transaction;#sqlcommit;#查看事务与锁信息show engine innodb status;#分析sql,死锁:1.没走行锁,索引失效,全表扫描explain sql;            autocommit              自动提交: 如果 autocommit 开启，则每个SQL语句将自己形成一个事务。                  非自动提交: 需要执行多语句事务 START TRANSACTION 或 BEGIN 语句，并用它结束 COMMIT或 ROLLBACK 声明。      Read-Uncommitted读-未提交，有脏读数据: name = test， A事物更新 name = test2，同时B事物开启，B执行查询name = test2，若A回滚，实际数据为 name = test，而B却返回了 name = test2，这就称之为脏读.Read(B事物读取)-Uncommitted(A事物未提交成功的操作[更新]数据): 有脏读。TimeLine                   原数据 name = testA事物 ↓start ↓执行更新 ↓name = test2    此时     B事物 → start → 查询 -&amp;gt; name = test2 ↓                                                  ↓回滚                                          返回(name = test2)A事物并没有修改成功，但B事物已经返回 name = test2，出现了脏读Read-Committed读-已提交,不可重复读一个事务只能读到另一个事务修改的已经提交了事务的数据。A隐式提交了事物，B查询 name = test2，这是没有问题的。但B还没有结束，A中执行更新 name = test3，B执行查询 name = test3，这种称之为 不可重复读。Read(B事物读取)-Committed(A事物提交成功的操作[更新]数据): 不可重复读，Commit 后数据发生改变。TimeLine                原数据 name = testB事物                    A事物 ↓                        ↓start                   start → 执行 name = test2 → commit.(At1) ↓查询(name = test2) ↓其它操作                 A事物 ↓                       ↓其它操作                 start → 执行 name = test3 → commit.(At2) ↓查询(name = test3) ↓提交在B事物的时间线中，A事物对数据进行了两次操作，B事物进行了两次查询，但只能读取到操作后的数据。数据会跟着事物修改而改变。Repeatable-Read可重复读第一次读取的数据，即使别的事务修改的这个值，这个事务再读取这条数据的时候还是和第一次获取的一样，不会随着别的事务的修改而改变。原始数据 name = test， 开启A、B两个事物， A修改 name = test2，同时B事物查询 name = test,不管事物A是否提交，在B事物没有提交之前，这条数据对B来说一直都是没有发生改变的，是可以重复的被读到。TimeLine                原数据 name = testB事物                    A事物 ↓                        ↓start                   start ↓                        ↓查询(name = test)       修改(name = test2)  → 提交 ↓再次查询(name = test) ↓查询(name = test) ↓提交在B事物的时间线中，不管A事物执行什么操作，或者执行回滚或提交。B事物的值始终为第一次获取的值。数据不会跟着事物修改而改变。Serializable串行化只能进行读-读并发。只要有一个事务操作一条记录的写，那么其他要访问这条记录的事务都得等着一般没人用串行化，性能比较低，常用的是已提交读和可重复读。"
+  },
+  
+  {
     "title": "Getting Started",
     "url": "/posts/getting-start/",
     "categories": "Blogging, Tutorial",

@@ -1,17 +1,17 @@
 
 
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <id>http://localhost:4000/</id>
+  <id>http://192.168.222.128:4001/</id>
   <title>Jamnii Shao</title>
   <subtitle>Jamnii Shao, a old person of low spirited.</subtitle>
-  <updated>2021-12-20T14:16:15+08:00</updated>
+  <updated>2021-12-20T16:53:40+08:00</updated>
   <author>
     <name>Jamnii Shao</name>
-    <uri>http://localhost:4000/</uri>
+    <uri>http://192.168.222.128:4001/</uri>
   </author>
-  <link rel="self" type="application/atom+xml" href="http://localhost:4000/feed.xml"/>
+  <link rel="self" type="application/atom+xml" href="http://192.168.222.128:4001/feed.xml"/>
   <link rel="alternate" type="text/html" hreflang="en"
-    href="http://localhost:4000/"/>
+    href="http://192.168.222.128:4001/"/>
   <generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator>
   <rights> © 2021 Jamnii Shao </rights>
   <icon>/assets/img/favicons/favicon.ico</icon>
@@ -20,14 +20,66 @@
 
   
   <entry>
+    <title>MySQL Transaction</title>
+    <link href="http://192.168.222.128:4001/posts/mysql-transaction/" rel="alternate" type="text/html" title="MySQL Transaction" />
+    <published>2021-02-20T16:42:00+08:00</published>
+  
+    <updated>2021-02-20T16:42:00+08:00</updated>
+  
+    <id>http://192.168.222.128:4001/posts/mysql-transaction/</id>
+    <content src="http://192.168.222.128:4001/posts/mysql-transaction/" />
+    <author>
+      <name>Jamnii Shao</name>
+    </author>
+
+  
+    
+    <category term="MySQL" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      MySQL 事务主要用于处理操作量大，复杂度高的数据。
+
+1. 基础介绍
+
+2. ACID
+
+Atomicity
+原子性: 一个事务被视为一个不可分割的最小工作单元 一个事务中的所有操作，要么全部完成，要么全部不完成，不会在中间某个环节结束。
+
+事务在执行过程中发生错误，会被回滚到事务开始前的状态，就像这个事务从来没有执行过一样。
+
+原子性关注状态，要么全部成功，要么全部失败，不存在部分成功的状态
+
+Consistency
+一致性: 在事务开始之前和事务结束以后，数据库数据的一致性约束没有被破坏。 保证在一个事务中的多次操作的数据中间状态,对其他事务不可见的。
+
+因为这些中间状态，是一个过渡状态，与事务的开始状态和事务的结束状态是不一致的，一致性关注数据的可见性，中间状态的数据对外部不可见，只有最初状态和最终状态的数据对外可见。
+
+(memberA 向 memberB 转 100,在...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
     <title>Getting Started</title>
-    <link href="http://localhost:4000/posts/getting-start/" rel="alternate" type="text/html" title="Getting Started" />
+    <link href="http://192.168.222.128:4001/posts/getting-start/" rel="alternate" type="text/html" title="Getting Started" />
     <published>2019-08-09T20:55:00+08:00</published>
   
     <updated>2019-08-10T04:55:00+08:00</updated>
   
-    <id>http://localhost:4000/posts/getting-start/</id>
-    <content src="http://localhost:4000/posts/getting-start/" />
+    <id>http://192.168.222.128:4001/posts/getting-start/</id>
+    <content src="http://192.168.222.128:4001/posts/getting-start/" />
     <author>
       <name>Jamnii Shao</name>
     </author>
