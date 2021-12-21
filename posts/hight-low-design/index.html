@@ -34,24 +34,24 @@
 
   <!-- Begin Jekyll SEO tag v2.7.1 -->
 <meta name="generator" content="Jekyll v4.2.1" />
-<meta property="og:title" content="MySQL Transaction" />
+<meta property="og:title" content="高内聚低耦合" />
 <meta property="og:locale" content="en" />
-<meta name="description" content="MySQL 事务主要用于处理操作量大，复杂度高的数据。" />
-<meta property="og:description" content="MySQL 事务主要用于处理操作量大，复杂度高的数据。" />
-<link rel="canonical" href="http://192.168.222.128:4001/posts/mysql-transaction/" />
-<meta property="og:url" content="http://192.168.222.128:4001/posts/mysql-transaction/" />
+<meta name="description" content="模块之间存在依赖， 导致改动可能会互相影响， 关系越紧密， 耦合越强， 模块独立性越差。 模块内部的元素，关联性越强， 则内聚越高， 模块单一性更强。" />
+<meta property="og:description" content="模块之间存在依赖， 导致改动可能会互相影响， 关系越紧密， 耦合越强， 模块独立性越差。 模块内部的元素，关联性越强， 则内聚越高， 模块单一性更强。" />
+<link rel="canonical" href="http://192.168.222.128:4001/posts/hight-low-design/" />
+<meta property="og:url" content="http://192.168.222.128:4001/posts/hight-low-design/" />
 <meta property="og:site_name" content="Jamnii Shao" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2021-02-20T16:42:00+08:00" />
+<meta property="article:published_time" content="2017-03-15T00:00:00+08:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="MySQL Transaction" />
+<meta property="twitter:title" content="高内聚低耦合" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"@type":"BlogPosting","url":"http://192.168.222.128:4001/posts/mysql-transaction/","headline":"MySQL Transaction","datePublished":"2021-02-20T16:42:00+08:00","dateModified":"2021-02-20T16:42:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://192.168.222.128:4001/posts/mysql-transaction/"},"description":"MySQL 事务主要用于处理操作量大，复杂度高的数据。","@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","url":"http://192.168.222.128:4001/posts/hight-low-design/","headline":"高内聚低耦合","datePublished":"2017-03-15T00:00:00+08:00","dateModified":"2017-03-05T16:42:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://192.168.222.128:4001/posts/hight-low-design/"},"description":"模块之间存在依赖， 导致改动可能会互相影响， 关系越紧密， 耦合越强， 模块独立性越差。 模块内部的元素，关联性越强， 则内聚越高， 模块单一性更强。","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-  <title>MySQL Transaction | Jamnii Shao
+  <title>高内聚低耦合 | Jamnii Shao
   </title>
 
   <!--
@@ -378,7 +378,7 @@
         
 
           
-            <span>MySQL Transaction</span>
+            <span>高内聚低耦合</span>
           
 
         
@@ -452,6 +452,264 @@
 
 
 
+  <!-- add CDN prefix if it exists -->
+
+  
+
+  
+
+  <!-- lazy-load images <https://github.com/ApoorvSaxena/lozad.js#usage> -->
+
+  
+
+  <!-- add image placehoder to prevent layout reflow -->
+
+  
+
+  
+
+  
+    
+      
+      
+    
+
+    
+    
+
+    
+    
+
+    
+      
+      
+
+      
+
+      
+
+    
+      
+      
+
+      
+
+      
+
+    
+      
+      
+
+      
+
+      
+
+    
+      
+      
+
+      
+
+      
+
+    
+
+    
+
+  
+    
+
+    
+    
+
+    
+    
+
+    
+      
+      
+
+      
+
+      
+
+    
+      
+      
+
+      
+
+      
+
+    
+      
+      
+
+      
+
+      
+
+    
+      
+      
+
+      
+
+      
+
+    
+      
+      
+
+      
+
+      
+
+    
+
+    
+
+  
+    
+
+    
+    
+
+    
+    
+
+    
+      
+      
+
+      
+
+      
+
+    
+      
+      
+
+      
+
+      
+
+    
+      
+      
+
+      
+
+      
+
+    
+      
+      
+
+      
+
+      
+
+    
+
+    
+
+  
+    
+
+    
+    
+
+    
+    
+
+    
+      
+      
+
+      
+
+      
+
+    
+      
+      
+
+      
+
+      
+
+    
+      
+      
+
+      
+
+      
+
+    
+      
+      
+
+      
+
+      
+
+    
+
+    
+
+  
+    
+
+    
+    
+
+    
+    
+
+    
+      
+      
+
+      
+
+      
+
+    
+      
+      
+
+      
+
+      
+
+    
+      
+      
+
+      
+
+      
+
+    
+      
+      
+
+      
+
+      
+
+    
+
+    
+
+  
+
+  
+
+
+
 <!-- Add header for code snippets -->
 
 
@@ -511,6 +769,39 @@
       
 
     
+      
+
+      
+      
+
+      
+      
+
+      
+
+    
+      
+
+      
+      
+
+      
+      
+
+      
+
+    
+      
+
+      
+      
+
+      
+      
+
+      
+
+    
 
     
 
@@ -527,61 +818,6 @@
       
         
         
-      
-
-      
-      
-
-      
-      
-
-      
-
-    
-      
-
-      
-      
-
-      
-      
-
-      
-
-    
-      
-
-      
-      
-
-      
-      
-
-      
-
-    
-      
-
-      
-      
-
-      
-      
-
-      
-
-    
-      
-
-      
-      
-
-      
-      
-
-      
-
-    
       
 
       
@@ -636,7 +872,7 @@
 
 
 
-<h1 data-toc-skip>MySQL Transaction</h1>
+<h1 data-toc-skip>高内聚低耦合</h1>
 
 <div class="post-meta text-muted">
 
@@ -670,12 +906,12 @@
 
 
 <em class="timeago"
-    date="2021-02-20 16:42:00 +0800"
+    date="2017-03-15 00:00:00 +0800"
     
       data-toggle="tooltip"
       data-placement="bottom"
-      title="Sat, Feb 20, 2021,  4:42 PM +0800"
-    >Feb 20</em>
+      title="Wed, Mar 15, 2017, 12:00 AM +0800"
+    >Mar 15, 2017</em>
 
       </span>
 
@@ -693,12 +929,12 @@
 
 
 <em class="timeago"
-    date="2021-02-20 16:42"
+    date="2017-03-05 16:42"
     
       data-toggle="tooltip"
       data-placement="bottom"
-      title="Sat, Feb 20, 2021,  4:42 PM +0800"
-    >Feb 20</em>
+      title="Sun, Mar  5, 2017,  4:42 PM +0800"
+    >Mar  5, 2017</em>
 
       </span>
       
@@ -723,8 +959,8 @@
 
 <!-- return element -->
 <span class="readtime" data-toggle="tooltip" data-placement="bottom"
-  title="1784 words">
-  <em>9 min</em> read</span>
+  title="846 words">
+  <em>4 min</em> read</span>
 
 
       <!-- page views -->
@@ -736,274 +972,72 @@
 </div> <!-- .post-meta -->
 
 <div class="post-content">
-  <p>MySQL 事务主要用于处理操作量大，复杂度高的数据。</p>
+  <p>模块之间存在依赖， 导致改动可能会互相影响， 关系越紧密， 耦合越强， 模块独立性越差。
+模块内部的元素，关联性越强， 则内聚越高， 模块单一性更强。</p>
 
-<h3 id="1-基础介绍">1. 基础介绍<a href="#1-基础介绍"><i class="fas fa-hashtag"></i></a></h3></h3>
+<h3 id="模块">模块<a href="#模块"><i class="fas fa-hashtag"></i></a></h3></h3>
 
-<h3 id="2-acid">2. ACID<a href="#2-acid"><i class="fas fa-hashtag"></i></a></h3></h3>
+<p>模块就是从逻辑上将系统分解为更细微的部分， 分而治之， 复杂问题拆解为若干简单问题， 逐个解决。</p>
 
-<h4 id="atomicity"><code class="language-plaintext highlighter-rouge">Atomicity</code><a href="#atomicity"><i class="fas fa-hashtag"></i></a></h4></h4>
-<p><code class="language-plaintext highlighter-rouge">原子性</code>: 一个事务被视为一个不可分割的最小工作单元 一个事务中的所有操作，要么全部完成，要么全部不完成，不会在中间某个环节结束。</p>
+<p>耦合主要描述模块之间的关系， 内聚主要描述模块内部。 模块的粒度可大可小， 可以是函数， 类， 功能块等等。</p>
 
-<p>事务在执行过程中发生错误，会被回滚到事务开始前的状态，就像这个事务从来没有执行过一样。</p>
+<h3 id="耦合">耦合<a href="#耦合"><i class="fas fa-hashtag"></i></a></h3></h3>
 
-<p>原子性关注状态，要么全部成功，要么全部失败，不存在部分成功的状态</p>
+<p>模块之间存在依赖， 导致改动可能会互相影响， 关系越紧密， 耦合越强， 模块独立性越差。</p>
 
-<h4 id="consistency"><code class="language-plaintext highlighter-rouge">Consistency</code><a href="#consistency"><i class="fas fa-hashtag"></i></a></h4></h4>
-<p><code class="language-plaintext highlighter-rouge">一致性</code>: 在事务开始之前和事务结束以后，数据库数据的一致性约束没有被破坏。 保证在一个事务中的多次操作的数据中间状态,对其他事务不可见的。</p>
+<p>比如模块A直接操作了模块B中数据， 则视为强耦合， 若A只是通过数据与模块B交互， 则视为弱耦合。</p>
 
-<p>因为这些中间状态，是一个过渡状态，与事务的开始状态和事务的结束状态是不一致的，一致性关注数据的可见性，中间状态的数据对外部不可见，只有最初状态和最终状态的数据对外可见。</p>
+<p>独立的模块便于扩展， 维护， 写单元测试， 如果模块之间重重依赖， 会极大降低开发效率。</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="code-header">
-        <span label-text="Plaintext"><i class="fas fa-code small"></i></span>
-      <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-</pre></td><td class="rouge-code"><pre>(memberA 向 memberB 转 100,在其它事物看来,要么 memberA 减少了, 要么 memberB 增加了)
-不会看到 memberA 减少了, memberB还没有加的情况,这个属于中间状态)
-与 `Atomicity` 的区别: 未提交读的隔离级别下是事务内部操作是可见的，明显违背了一致性。
-</pre></td></tr></tbody></table></code></div></div>
+<p><img data-proofer-ignore data-src="/assets/image/1732014031.gif" alt="640.gif" /></p>
 
-<h4 id="isolation"><code class="language-plaintext highlighter-rouge">Isolation</code><a href="#isolation"><i class="fas fa-hashtag"></i></a></h4></h4>
-<p><code class="language-plaintext highlighter-rouge">隔离性</code>: 数据库允许多个并发事务同时对数据进行读写和修改的能力。 隔离性可以防止多个事务并发执行时由于交叉执行而导致数据的不一致。</p>
+<h3 id="内聚">内聚<a href="#内聚"><i class="fas fa-hashtag"></i></a></h3></h3>
 
-<h4 id="durability"><code class="language-plaintext highlighter-rouge">Durability</code><a href="#durability"><i class="fas fa-hashtag"></i></a></h4></h4>
-<p><code class="language-plaintext highlighter-rouge">持久性</code>: 事务处理结束后，对数据的修改就是永久的，即便系统故障也不会丢失。</p>
+<p>模块内部的元素， 关联性越强， 则内聚越高， 模块单一性更强。 一个模块应当尽可能独立完成某个功能，</p>
 
-<h3 id="3-隔离级别">3. 隔离级别<a href="#3-隔离级别"><i class="fas fa-hashtag"></i></a></h3></h3>
+<p>如果有各种场景需要被引入到当前模块， 代码质量将变得非常脆弱， 这种情况建议拆分为多个模块。</p>
 
-<p>针对多个事物的数据处理，不同的隔离级别对数据会有不同的影响。</p>
+<p>低内聚的模块代码， 不管是维护， 扩展还是重构都相当麻烦， 难以下手。</p>
+
+<p><img data-proofer-ignore data-src="/assets/image/2942821336.gif" alt="640 (1).gif" /></p>
+
+<h3 id="接口设计原则">接口设计原则<a href="#接口设计原则"><i class="fas fa-hashtag"></i></a></h3></h3>
+
+<p>好的接口应当满足设计模式六大原则， 很多设计模式， 框架都是基于高内聚低耦合这个出发点的。</p>
 
 <ul>
-  <li>
-    <p>设置事物隔离级别</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="code-header">
-        <span label-text="Plaintext"><i class="fas fa-code small"></i></span>
-      <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-</pre></td><td class="rouge-code"><pre>show variables like "%isolation%";
-
-"read uncommitted, read committed, repeatable read, serializable"
-
-set session transaction isolation level repeatable read;
-</pre></td></tr></tbody></table></code></div>    </div>
-  </li>
-  <li>
-    <p>锁测试</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="code-header">
-        <span label-text="Plaintext"><i class="fas fa-code small"></i></span>
-      <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-</pre></td><td class="rouge-code"><pre>关闭自动提交
-#show variables like "autocommit";
-set session autocommit=0;
-
-#开始事物
-start transaction;
-#sql
-commit;
-
-#查看事务与锁信息
-show engine innodb status;
-
-#分析sql,死锁:1.没走行锁,索引失效,全表扫描
-explain sql;
-</pre></td></tr></tbody></table></code></div>    </div>
-  </li>
-  <li>
-    <p><a href="https://dev.mysql.com/doc/refman/8.0/en/innodb-autocommit-commit-rollback.html">autocommit</a></p>
-  </li>
-  <li>
-    <ul>
-      <li>自动提交: 如果 autocommit 开启，则每个SQL语句将自己形成一个事务。</li>
-    </ul>
-  </li>
-  <li>
-    <ul>
-      <li>非自动提交: 需要执行多语句事务 START TRANSACTION 或 BEGIN 语句，并用它结束 COMMIT或 ROLLBACK 声明。</li>
-    </ul>
-  </li>
+  <li>单一职责原则：一个类只负责一个功能领域中的相应职责。</li>
+  <li>开闭原则：一个软件实体应当对扩展开放，对修改关闭。</li>
+  <li>里氏代换原则：所有引用基类（父类）的地方必须能透明地使用其子类的对象。</li>
+  <li>依赖倒转原则：抽象不应该依赖于细节， 细节应当依赖于抽象。 换言之， 要针对接口编程， 而不是针对实现编程。</li>
+  <li>接口隔离原则：使用多个专门的接口， 而不使用单一的总接口， 即客户端不应该依赖那些它不需要的接口。</li>
+  <li>迪米特法则： 一个软件实体应当尽可能少地与其他实体发生相互作用， 例如外观模式， 对外暴露统一接口。</li>
 </ul>
 
-<h4 id="read-uncommitted">Read-Uncommitted<a href="#read-uncommitted"><i class="fas fa-hashtag"></i></a></h4></h4>
-<p><strong>读-未提交，有脏读</strong></p>
+<h3 id="举几个栗子">举几个栗子<a href="#举几个栗子"><i class="fas fa-hashtag"></i></a></h3></h3>
 
-<p>数据: name = test， A事物更新 name = test2，同时B事物开启，B执行查询name = test2，</p>
+<h4 id="外观模式">外观模式<a href="#外观模式"><i class="fas fa-hashtag"></i></a></h4></h4>
 
-<p>若A回滚，实际数据为 name = test，而B却返回了 name = test2，这就称之为脏读.</p>
+<p>为系统中多个子系统提供一致的对外调用， 对客户端隐藏子系统细节， 降低其与子系统的耦合。</p>
 
-<p>Read(B事物读取)-Uncommitted(A事物未提交成功的操作[更新]数据): 有脏读。</p>
+<p><img data-proofer-ignore data-src="/assets/image/107262251.jpg" alt="6402.jpg" /></p>
 
-<div class="language-plaintext highlighter-rouge"><div class="code-header">
-        <span label-text="Plaintext"><i class="fas fa-code small"></i></span>
-      <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-</pre></td><td class="rouge-code"><pre>TimeLine                   原数据 name = test
+<h4 id="桥接模式">桥接模式<a href="#桥接模式"><i class="fas fa-hashtag"></i></a></h4></h4>
 
-A事物
- ↓
-start
- ↓
-执行更新
- ↓
-name = test2    此时     B事物 → start → 查询 -&gt; name = test2
- ↓                                                  ↓
-回滚                                          返回(name = test2)
+<p>JDBC中的把面向厂商的接口(Driver)和面向使用者的API(DriverManager)做了拆分隔离。</p>
 
-A事物并没有修改成功，但B事物已经返回 name = test2，出现了脏读
-</pre></td></tr></tbody></table></code></div></div>
+<p><img data-proofer-ignore data-src="/assets/image/3181456104.jpg" alt="6403.jpg" /></p>
 
-<h4 id="read-committed">Read-Committed<a href="#read-committed"><i class="fas fa-hashtag"></i></a></h4></h4>
+<h4 id="适配器模式">适配器模式<a href="#适配器模式"><i class="fas fa-hashtag"></i></a></h4></h4>
 
-<p><strong>读-已提交,不可重复读</strong></p>
+<p>引入第三方库(hibernate， log4j)， 不应该直接在代码中继承或者使用其实体类。
+需要抽出上层统一接口， 然后增加实现类， 对外暴露接口。</p>
 
-<p>一个事务只能读到另一个事务修改的已经提交了事务的数据。</p>
+<p><img data-proofer-ignore data-src="/assets/image/563142807.jpg" alt="6404.jpg" /></p>
 
-<p>A隐式提交了事物，B查询 name = test2，这是没有问题的。但B还没有结束，A中执行更新 name = test3，</p>
+<h3 id="来源">来源<a href="#来源"><i class="fas fa-hashtag"></i></a></h3></h3>
 
-<p>B执行查询 name = test3，这种称之为 不可重复读。</p>
-
-<p>Read(B事物读取)-Committed(A事物提交成功的操作[更新]数据): 不可重复读，Commit 后数据发生改变。</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="code-header">
-        <span label-text="Plaintext"><i class="fas fa-code small"></i></span>
-      <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-</pre></td><td class="rouge-code"><pre>TimeLine                原数据 name = test
-
-B事物                    A事物
- ↓                        ↓
-start                   start → 执行 name = test2 → commit.(At1)
- ↓
-查询(name = test2)
- ↓
-其它操作                 A事物
- ↓                       ↓
-其它操作                 start → 执行 name = test3 → commit.(At2)
- ↓
-查询(name = test3)
- ↓
-提交
-
-在B事物的时间线中，A事物对数据进行了两次操作，B事物进行了两次查询，但只能读取到操作后的数据。
-数据会跟着事物修改而改变。
-</pre></td></tr></tbody></table></code></div></div>
-
-<p>Tips:</p>
-
-<p>1.在RC隔离级别下并不是不会出现死锁，只是出现几率比RR低而已！</p>
-
-<p>2.在RC隔离级别下，条件列未命中索引只会锁行！</p>
-
-<p>3.在RC隔离级别下，半一致性读(semi-consistent)特性增加了update操作的并发性！减少了更新同一行记录时的冲突，减少锁等待。</p>
-
-<p>4.半一致性读: 所谓半一致性读就是，一个update语句，如果读到一行已经加锁的记录，
-此时InnoDB返回记录最近提交的版本，由MySQL上层判断此版本是否满足update的where条件。
-若满足(需要更新)，则MySQL会重新发起一次读操作，此时会读取行的最新版本(并加锁)！</p>
-
-<h4 id="repeatable-read">Repeatable-Read<a href="#repeatable-read"><i class="fas fa-hashtag"></i></a></h4></h4>
-
-<p><strong>可重复读</strong></p>
-
-<p>第一次读取的数据，即使别的事务修改的这个值，这个事务再读取这条数据的时候还是和第一次获取的一样，不会随着别的事务的修改而改变。</p>
-
-<p>原始数据 name = test， 开启A、B两个事物， A修改 name = test2，同时B事物查询 name = test,</p>
-
-<p>不管事物A是否提交，在B事物没有提交之前，这条数据对B来说一直都是没有发生改变的，是可以重复的被读到。</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="code-header">
-        <span label-text="Plaintext"><i class="fas fa-code small"></i></span>
-      <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-</pre></td><td class="rouge-code"><pre>TimeLine                原数据 name = test
-
-B事物                    A事物
- ↓                        ↓
-start                   start
- ↓                        ↓
-查询(name = test)       修改(name = test2)  → 提交
- ↓
-再次查询(name = test)
- ↓
-查询(name = test)
- ↓
-提交
-
-在B事物的时间线中，不管A事物执行什么操作，或者执行回滚或提交。B事物的值始终为第一次获取的值。
-数据不会跟着事物修改而改变。
-</pre></td></tr></tbody></table></code></div></div>
-
-<p>Tips:</p>
-
-<p>1.在RR隔离级别下，存在间隙锁，导致出现死锁的几率比RC大的多！</p>
-
-<p>2.在RR隔离级别下，条件列未命中索引会锁表！</p>
-
-<h4 id="serializable">Serializable<a href="#serializable"><i class="fas fa-hashtag"></i></a></h4></h4>
-
-<p><strong>串行化</strong></p>
-
-<p>只能进行读-读并发。只要有一个事务操作一条记录的写，那么其他要访问这条记录的事务都得等着</p>
-
-<p>一般没人用串行化，性能比较低，常用的是已提交读和可重复读。</p>
+<p>作者：大道方圆 <a href="http://cnblogs.com/xdecode/p/9393885.html">Link</a></p>
 
 
 </div>
@@ -1015,19 +1049,11 @@ start                   start
   <div class="post-meta mb-3">
     <i class="far fa-folder-open fa-fw mr-1"></i>
     
-      <a href='/categories/mysql/'>MySQL</a>
+      <a href='/categories/design/'>Design</a>
   </div>
   
 
   <!-- tags -->
-  
-  <div class="post-tags">
-    <i class="fa fa-tags fa-fw mr-1"></i>
-      
-      <a href="/tags/transaction/"
-          class="post-tag no-text-decoration" >transaction</a>
-      
-  </div>
   
 
   <div class="post-tail-bottom
@@ -1234,33 +1260,33 @@ start                   start
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-
 
 
 
@@ -1275,9 +1301,6 @@ start                   start
   
     
     
-  
-    
-    
       
       
         
@@ -1294,6 +1317,9 @@ start                   start
         
         
       
+    
+  
+    
     
   
 
@@ -1305,6 +1331,51 @@ start                   start
     <h3 class="pt-2 mt-1 mb-4 ml-1"
       data-toc-skip>Further Reading</h3>
     <div class="card-deck mb-4">
+    
+      
+      
+      <div class="card">
+        <a href="/posts/mysql-transaction/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/timeago.js
+-->
+
+
+
+
+
+<em class="timeago small"
+    date="2021-02-20 16:42:00 +0800"
+    >Feb 20</em>
+
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>MySQL Transaction</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                MySQL 事务主要用于处理操作量大，复杂度高的数据。
+
+1. 基础介绍
+
+2. ACID
+
+Atomicity
+原子性: 一个事务被视为一个不可分割的最小工作单元 一个事务中的所有操作，要么全部完成，要么全部不完成，不会在中间某个环节结束。
+
+事务在执行过程中发生错误，会被回滚到事务开始前的状态，就像这个事务从来没有执行过一样。
+
+原子性关注状态，要么全部成功，要么全部失败，不存在部分成功...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
     
       
       
@@ -1348,51 +1419,6 @@ There are two ways to create a new...
         </a>
       </div>
     
-      
-      
-      <div class="card">
-        <a href="/posts/hight-low-design/">
-          <div class="card-body">
-            <!--
-  Date format snippet
-  See: ${JS_ROOT}/utils/timeago.js
--->
-
-
-
-
-
-<em class="timeago small"
-    date="2017-03-15 00:00:00 +0800"
-    >Mar 15, 2017</em>
-
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>高内聚低耦合</h3>
-            <div class="text-muted small">
-              <p>
-                
-
-
-
-
-
-                模块之间存在依赖， 导致改动可能会互相影响， 关系越紧密， 耦合越强， 模块独立性越差。
-模块内部的元素，关联性越强， 则内聚越高， 模块单一性更强。
-
-模块
-
-模块就是从逻辑上将系统分解为更细微的部分， 分而治之， 复杂问题拆解为若干简单问题， 逐个解决。
-
-耦合主要描述模块之间的关系， 内聚主要描述模块内部。 模块的粒度可大可小， 可以是函数， 类， 功能块等等。
-
-耦合
-
-模块之间存在...
-              </p>
-            </div>
-          </div>
-        </a>
-      </div>
-    
     </div> <!-- .card-deck -->
   </div> <!-- #related-posts -->
 
@@ -1405,17 +1431,17 @@ There are two ways to create a new...
 
 <div class="post-navigation d-flex justify-content-between">
   
-  <a href="/posts/getting-start/" class="btn btn-outline-primary"
+  <span class="btn btn-outline-primary disabled"
     prompt="Older">
-    <p>Getting Started</p>
-  </a>
+    <p>-</p>
+  </span>
   
 
   
-  <span class="btn btn-outline-primary disabled"
+  <a href="/posts/getting-start/" class="btn btn-outline-primary"
     prompt="Newer">
-    <p>-</p>
-  </span>
+    <p>Getting Started</p>
+  </a>
   
 
 </div>

@@ -47,7 +47,7 @@
 <meta property="twitter:title" content="Getting Started" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"datePublished":"2019-08-09T20:55:00+08:00","@type":"BlogPosting","dateModified":"2019-08-10T04:55:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://192.168.222.128:4001/posts/getting-start/"},"url":"http://192.168.222.128:4001/posts/getting-start/","description":"Prerequisites","headline":"Getting Started","@context":"https://schema.org"}</script>
+{"@type":"BlogPosting","url":"http://192.168.222.128:4001/posts/getting-start/","headline":"Getting Started","datePublished":"2019-08-09T20:55:00+08:00","dateModified":"2019-08-10T04:55:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://192.168.222.128:4001/posts/getting-start/"},"description":"Prerequisites","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -1187,6 +1187,11 @@ The merge is likely to conflict with your local modifications. Please be patient
         
       <li><a href="/posts/getting-start/">Getting Started</a></li>
       
+        
+        
+        
+      <li><a href="/posts/hight-low-design/">高内聚低耦合</a></li>
+      
     </ul>
   </div> <!-- #access-lastmod -->
 
@@ -1317,6 +1322,19 @@ The merge is likely to conflict with your local modifications. Please be patient
 
   
     
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
 
 
 
@@ -1340,6 +1358,16 @@ The merge is likely to conflict with your local modifications. Please be patient
     
   
     
+    
+  
+    
+    
+      
+      
+        
+        
+        
+      
     
   
 
@@ -1397,6 +1425,51 @@ Atomicity
         </a>
       </div>
     
+      
+      
+      <div class="card">
+        <a href="/posts/hight-low-design/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/timeago.js
+-->
+
+
+
+
+
+<em class="timeago small"
+    date="2017-03-15 00:00:00 +0800"
+    >Mar 15, 2017</em>
+
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>高内聚低耦合</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                模块之间存在依赖， 导致改动可能会互相影响， 关系越紧密， 耦合越强， 模块独立性越差。
+模块内部的元素，关联性越强， 则内聚越高， 模块单一性更强。
+
+模块
+
+模块就是从逻辑上将系统分解为更细微的部分， 分而治之， 复杂问题拆解为若干简单问题， 逐个解决。
+
+耦合主要描述模块之间的关系， 内聚主要描述模块内部。 模块的粒度可大可小， 可以是函数， 类， 功能块等等。
+
+耦合
+
+模块之间存在...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
     </div> <!-- .card-deck -->
   </div> <!-- #related-posts -->
 
@@ -1409,10 +1482,10 @@ Atomicity
 
 <div class="post-navigation d-flex justify-content-between">
   
-  <span class="btn btn-outline-primary disabled"
+  <a href="/posts/hight-low-design/" class="btn btn-outline-primary"
     prompt="Older">
-    <p>-</p>
-  </span>
+    <p>高内聚低耦合</p>
+  </a>
   
 
   
