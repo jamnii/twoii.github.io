@@ -723,8 +723,8 @@
 
 <!-- return element -->
 <span class="readtime" data-toggle="tooltip" data-placement="bottom"
-  title="1521 words">
-  <em>8 min</em> read</span>
+  title="1784 words">
+  <em>9 min</em> read</span>
 
 
       <!-- page views -->
@@ -933,6 +933,18 @@ start                   start → 执行 name = test2 → commit.(At1)
 数据会跟着事物修改而改变。
 </pre></td></tr></tbody></table></code></div></div>
 
+<p>Tips:</p>
+
+<p>1.在RC隔离级别下并不是不会出现死锁，只是出现几率比RR低而已！</p>
+
+<p>2.在RC隔离级别下，条件列未命中索引只会锁行！</p>
+
+<p>3.在RC隔离级别下，半一致性读(semi-consistent)特性增加了update操作的并发性！减少了更新同一行记录时的冲突，减少锁等待。</p>
+
+<p>4.半一致性读: 所谓半一致性读就是，一个update语句，如果读到一行已经加锁的记录，
+此时InnoDB返回记录最近提交的版本，由MySQL上层判断此版本是否满足update的where条件。
+若满足(需要更新)，则MySQL会重新发起一次读操作，此时会读取行的最新版本(并加锁)！</p>
+
 <h4 id="repeatable-read">Repeatable-Read<a href="#repeatable-read"><i class="fas fa-hashtag"></i></a></h4></h4>
 
 <p><strong>可重复读</strong></p>
@@ -978,6 +990,12 @@ start                   start
 在B事物的时间线中，不管A事物执行什么操作，或者执行回滚或提交。B事物的值始终为第一次获取的值。
 数据不会跟着事物修改而改变。
 </pre></td></tr></tbody></table></code></div></div>
+
+<p>Tips:</p>
+
+<p>1.在RR隔离级别下，存在间隙锁，导致出现死锁的几率比RC大的多！</p>
+
+<p>2.在RR隔离级别下，条件列未命中索引会锁表！</p>
 
 <h4 id="serializable">Serializable<a href="#serializable"><i class="fas fa-hashtag"></i></a></h4></h4>
 
