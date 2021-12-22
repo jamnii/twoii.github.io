@@ -4,7 +4,7 @@
   <id>http://192.168.222.128:4001/</id>
   <title>Jamnii Shao</title>
   <subtitle>Jamnii Shao, a old person of low spirited.</subtitle>
-  <updated>2021-12-22T19:52:35+08:00</updated>
+  <updated>2021-12-22T20:10:48+08:00</updated>
   <author>
     <name>Jamnii Shao</name>
     <uri>http://192.168.222.128:4001/</uri>
@@ -17,6 +17,62 @@
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>CGI、FastCGI、PHP-FPM、Reactor、I/O复用模型</title>
+    <link href="http://192.168.222.128:4001/posts/php-fpm-other/" rel="alternate" type="text/html" title="CGI、FastCGI、PHP-FPM、Reactor、I/O复用模型" />
+    <published>2021-02-25T00:00:00+08:00</published>
+  
+    <updated>2021-02-25T00:00:00+08:00</updated>
+  
+    <id>http://192.168.222.128:4001/posts/php-fpm-other/</id>
+    <content src="http://192.168.222.128:4001/posts/php-fpm-other/" />
+    <author>
+      <name>Jamnii Shao</name>
+    </author>
+
+  
+    
+    <category term="CGI" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      CGI、FastCGI、PHP-FPM、Reactor、I/O复用模型
+
+CGI
+
+common gateway interface (公共网关接口)
+
+
+  请求模式:
+        Web Brower(浏览器) —-(通过http协议传输)—-&amp;gt; Http Server(服务器nginx/apache) —–&amp;gt; CGI Program —–&amp;gt; Db
+
+  Server 与 CGI 通过 STDIN/STDOUT(标准的输入/输出)进行数据传递
+
+  nginx(动态加载模块) apache(指定加载模块)
+
+
+CGI工作原理
+
+
+  每当客户请求CGI的时候，WEB服务器就请求操作系统生成一个新的CGI解释器进程(如php-cgi.exe)，
+
+  CGI 的一个进程则处理完一个请求后退出，下一个请求来时再创建新进程。
+
+  当然，这样在访问量很少没有并发的...
+    </summary>
+  
+
+  </entry>
 
   
   <entry>
