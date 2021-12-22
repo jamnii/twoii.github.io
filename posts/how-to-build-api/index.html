@@ -859,7 +859,7 @@
 
 <!-- return element -->
 <span class="readtime" data-toggle="tooltip" data-placement="bottom"
-  title="5598 words">
+  title="5624 words">
   <em>31 min</em> read</span>
 
 
@@ -1001,7 +1001,7 @@ TDD[测试驱动开发（Test-Driven Development）]开发模式</p>
 
 <p>4.JSON 和 XML(不易于存储,文件较大,一切都为字符串[整数,布尔,null可能会混淆])</p>
 
-<p>5.内容结构：Json Api (优点:响应一致,结构相同|确定:无法多响应)</p>
+<p>5.内容结构：Json Api (优点:响应一致,结构相同|缺点:无法多响应)</p>
 <div class="language-plaintext highlighter-rouge"><div class="code-header">
         <span label-text="Plaintext"><i class="fas fa-code small"></i></span>
       <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
@@ -1095,6 +1095,8 @@ class Chapter03
 <p>2.HTTP状态码</p>
 
 <blockquote>
+  <p>1xx是消息响应,服务器收到请求,需要请求者继续执行操作</p>
+
   <p>2xx是关于成功的(在发送响应之前，客户机尝试做的任何事情都是成功的。请记住，像202 accept这样的状态并不表示实际结果，它只表示接受了一个请求并正在异步处理。)</p>
 
   <p>3xx是关于重定向的(这些都是关于将调用应用程序发送到实际资源的其他地方。其中最著名的是303 See Other和301永久移动，web上经常使用它们将浏览器重定向到另一个URL。)</p>
