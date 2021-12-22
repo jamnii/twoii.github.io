@@ -1358,6 +1358,101 @@ The merge is likely to conflict with your local modifications. Please be patient
         
         
 
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
 
 
   <div id="access-tags">
@@ -1373,6 +1468,12 @@ The merge is likely to conflict with your local modifications. Please be patient
     
       
       <a class="post-tag" href="/tags/getting-started/">getting started</a>
+    
+      
+      <a class="post-tag" href="/tags/lock/">Lock</a>
+    
+      
+      <a class="post-tag" href="/tags/mysql/">MySQL</a>
     
       
       <a class="post-tag" href="/tags/php-fpm/">PHP-FPM</a>
@@ -1463,6 +1564,19 @@ The merge is likely to conflict with your local modifications. Please be patient
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+  
     
   
 
@@ -1520,9 +1634,6 @@ The merge is likely to conflict with your local modifications. Please be patient
         
         
       
-    
-  
-    
     
   
     
@@ -1635,7 +1746,7 @@ Atomicity
       
       
       <div class="card">
-        <a href="/posts/how-to-build-api/">
+        <a href="/posts/mysql-locks/">
           <div class="card-body">
             <!--
   Date format snippet
@@ -1647,10 +1758,10 @@ Atomicity
 
 
 <em class="timeago small"
-    date="2017-11-12 00:00:00 +0800"
-    >Nov 12, 2017</em>
+    date="2021-02-06 00:00:00 +0800"
+    >Feb  6</em>
 
-            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>How to build you apis</h3>
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>MySql Locks</h3>
             <div class="text-muted small">
               <p>
                 
@@ -1659,17 +1770,31 @@ Atomicity
 
 
 
-                如何构建自己的api，即不臃肿，也不让人讨厌！
+                锁是计算机协调多个进程或线程并发访问某一资源的机制。锁保证数据并发访问的一致性、有效性；锁冲突也是影响数据库并发访问性能的一个重要因素。锁是Mysql在服务器层和存储引擎层的的并发控制。
+加锁是消耗资源的，锁的各种操作，包括获得锁、检测锁是否已解除、释放锁等。
 
-1  : 数据构建
+锁的类型
+这里主要介绍表锁和行锁。
 
-快速构建安全可用的基础数据，fork data，保证 api 数据完整性！
-
-2  : 规划和创造端点
-
-端点理论:将操作计划转换为实际端点需要的功能(参照:REST-FULL API的理论和命名约定的最佳实践)
-API资源应该避免输出自增变量,而是唯一标识
-TDD[测试驱动开发（Test-Driven Developm...
+表锁
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+1...
               </p>
             </div>
           </div>
@@ -1695,9 +1820,9 @@ TDD[测试驱动开发（Test-Driven Developm...
   
 
   
-  <a href="/posts/mysql-transaction/" class="btn btn-outline-primary"
+  <a href="/posts/mysql-locks/" class="btn btn-outline-primary"
     prompt="Newer">
-    <p>MySQL Transaction</p>
+    <p>MySql Locks</p>
   </a>
   
 
@@ -1893,6 +2018,101 @@ TDD[测试驱动开发（Test-Driven Developm...
         
         
 
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
 
 
   <div id="access-tags">
@@ -1908,6 +2128,12 @@ TDD[测试驱动开发（Test-Driven Developm...
     
       
       <a class="post-tag" href="/tags/getting-started/">getting started</a>
+    
+      
+      <a class="post-tag" href="/tags/lock/">Lock</a>
+    
+      
+      <a class="post-tag" href="/tags/mysql/">MySQL</a>
     
       
       <a class="post-tag" href="/tags/php-fpm/">PHP-FPM</a>

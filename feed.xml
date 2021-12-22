@@ -4,7 +4,7 @@
   <id>http://192.168.222.128:4001/</id>
   <title>Jamnii Shao</title>
   <subtitle>Jamnii Shao, a old person of low spirited.</subtitle>
-  <updated>2021-12-22T20:10:48+08:00</updated>
+  <updated>2021-12-22T20:55:14+08:00</updated>
   <author>
     <name>Jamnii Shao</name>
     <uri>http://192.168.222.128:4001/</uri>
@@ -128,6 +128,53 @@ Consistency
 
   
   <entry>
+    <title>MySql Locks</title>
+    <link href="http://192.168.222.128:4001/posts/mysql-locks/" rel="alternate" type="text/html" title="MySql Locks" />
+    <published>2021-02-06T00:00:00+08:00</published>
+  
+    <updated>2021-02-06T00:00:00+08:00</updated>
+  
+    <id>http://192.168.222.128:4001/posts/mysql-locks/</id>
+    <content src="http://192.168.222.128:4001/posts/mysql-locks/" />
+    <author>
+      <name>Jamnii Shao</name>
+    </author>
+
+  
+    
+    <category term="MySQL" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      锁是计算机协调多个进程或线程并发访问某一资源的机制。锁保证数据并发访问的一致性、有效性；锁冲突也是影响数据库并发访问性能的一个重要因素。锁是Mysql在服务器层和存储引擎层的的并发控制。
+加锁是消耗资源的，锁的各种操作，包括获得锁、检测锁是否已解除、释放锁等。
+
+锁的类型
+这里主要介绍表锁和行锁。
+
+表锁
+表锁由 MySQL Server 实现，一般在执行 DDL(Data Definition Language) 语句时会对整个表进行加锁，
+比如说 ALTER,UPDATE TABLE 等操作。
+在执行 SQL 语句时，也可以明确指定对某个表进行加锁。
+表锁使用的是一次性锁技术,只能访问加锁的表，不能访问其他表，直到最后通过 unlock tables 释放所有表锁
+|-------
+| read  |
+|--------------------------------------...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
     <title>Getting Started</title>
     <link href="http://192.168.222.128:4001/posts/getting-start/" rel="alternate" type="text/html" title="Getting Started" />
     <published>2019-08-09T20:55:00+08:00</published>
@@ -225,63 +272,6 @@ TDD[测试驱动开发（Test-Driven Development）]开发模式
 PUT是在您事先知道整个URL并且操作是幂等的情况下使用的。(幂等性是一个很花哨的词，意思是“可以一遍又一遍地做而不会产生不同的结果”)
 复数、单数还是两者都有?( /user/1[用户1的信息]  /users[所有用户|1,2用户信息])
 一个谓词是一个操作,一个执行术语,我们的API只需要一个谓词—HTTP方法。所有其他动词都需...
-    </summary>
-  
-
-  </entry>
-
-  
-  <entry>
-    <title>高内聚低耦合</title>
-    <link href="http://192.168.222.128:4001/posts/hight-low-design/" rel="alternate" type="text/html" title="高内聚低耦合" />
-    <published>2017-03-15T00:00:00+08:00</published>
-  
-    <updated>2017-03-05T16:42:00+08:00</updated>
-  
-    <id>http://192.168.222.128:4001/posts/hight-low-design/</id>
-    <content src="http://192.168.222.128:4001/posts/hight-low-design/" />
-    <author>
-      <name>Jamnii Shao</name>
-    </author>
-
-  
-    
-    <category term="Design" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
-
-      模块之间存在依赖， 导致改动可能会互相影响， 关系越紧密， 耦合越强， 模块独立性越差。
-模块内部的元素，关联性越强， 则内聚越高， 模块单一性更强。
-
-模块
-
-模块就是从逻辑上将系统分解为更细微的部分， 分而治之， 复杂问题拆解为若干简单问题， 逐个解决。
-
-耦合主要描述模块之间的关系， 内聚主要描述模块内部。 模块的粒度可大可小， 可以是函数， 类， 功能块等等。
-
-耦合
-
-模块之间存在依赖， 导致改动可能会互相影响， 关系越紧密， 耦合越强， 模块独立性越差。
-
-比如模块A直接操作了模块B中数据， 则视为强耦合， 若A只是通过数据与模块B交互， 则视为弱耦合。
-
-独立的模块便于扩展， 维护， 写单元测试， 如果模块之间重重依赖， 会极大降低开发效率。
-
-
-
-内聚
-
-模块内部的元素， 关联性越强， 则内聚越高， 模块单一性更强。 一个模块应当尽可能独立完成某个功能，
-
-如果有各种...
     </summary>
   
 
