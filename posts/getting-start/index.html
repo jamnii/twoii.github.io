@@ -36,8 +36,8 @@
 <meta name="generator" content="Jekyll v4.2.1" />
 <meta property="og:title" content="Getting Started" />
 <meta property="og:locale" content="en" />
-<meta name="description" content="Prerequisites" />
-<meta property="og:description" content="Prerequisites" />
+<meta name="description" content="Jamnii Shao, a old person of low spirited." />
+<meta property="og:description" content="Jamnii Shao, a old person of low spirited." />
 <link rel="canonical" href="http://192.168.222.128:4001/posts/getting-start/" />
 <meta property="og:url" content="http://192.168.222.128:4001/posts/getting-start/" />
 <meta property="og:site_name" content="Jamnii Shao" />
@@ -47,7 +47,7 @@
 <meta property="twitter:title" content="Getting Started" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"datePublished":"2019-08-09T20:55:00+08:00","@type":"BlogPosting","dateModified":"2019-08-10T04:55:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://192.168.222.128:4001/posts/getting-start/"},"url":"http://192.168.222.128:4001/posts/getting-start/","description":"Prerequisites","headline":"Getting Started","@context":"https://schema.org"}</script>
+{"datePublished":"2019-08-09T20:55:00+08:00","@type":"BlogPosting","dateModified":"2019-08-10T04:55:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://192.168.222.128:4001/posts/getting-start/"},"url":"http://192.168.222.128:4001/posts/getting-start/","description":"Jamnii Shao, a old person of low spirited.","headline":"Getting Started","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -846,7 +846,7 @@
 
 <!-- return element -->
 <span class="readtime" data-toggle="tooltip" data-placement="bottom"
-  title="1019 words">
+  title="1056 words">
   <em>5 min</em> read</span>
 
 
@@ -859,7 +859,32 @@
 </div> <!-- .post-meta -->
 
 <div class="post-content">
-  <h2 id="prerequisites">Prerequisites<a href="#prerequisites"><i class="fas fa-hashtag"></i></a></h2></h2>
+  <ul id="markdown-toc">
+  <li><a href="#prerequisites" id="markdown-toc-prerequisites">Prerequisites</a></li>
+  <li><a href="#installation" id="markdown-toc-installation">Installation</a>    <ul>
+      <li><a href="#creating-a-new-site" id="markdown-toc-creating-a-new-site">Creating a New Site</a>        <ul>
+          <li><a href="#option-1-using-the-chirpy-starter" id="markdown-toc-option-1-using-the-chirpy-starter">Option 1. Using the Chirpy Starter</a></li>
+          <li><a href="#option-2-forking-on-github" id="markdown-toc-option-2-forking-on-github">Option 2. Forking on GitHub</a></li>
+        </ul>
+      </li>
+      <li><a href="#installing-dependencies" id="markdown-toc-installing-dependencies">Installing Dependencies</a></li>
+    </ul>
+  </li>
+  <li><a href="#usage" id="markdown-toc-usage">Usage</a>    <ul>
+      <li><a href="#configuration" id="markdown-toc-configuration">Configuration</a></li>
+      <li><a href="#customing-stylesheet" id="markdown-toc-customing-stylesheet">Customing Stylesheet</a></li>
+      <li><a href="#running-local-server" id="markdown-toc-running-local-server">Running Local Server</a></li>
+      <li><a href="#deployment" id="markdown-toc-deployment">Deployment</a>        <ul>
+          <li><a href="#deploy-by-using-github-actions" id="markdown-toc-deploy-by-using-github-actions">Deploy by Using Github Actions</a></li>
+          <li><a href="#manually-build-and-deploy" id="markdown-toc-manually-build-and-deploy">Manually Build and Deploy</a></li>
+        </ul>
+      </li>
+      <li><a href="#upgrading" id="markdown-toc-upgrading">Upgrading</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="prerequisites">Prerequisites<a href="#prerequisites"><i class="fas fa-hashtag"></i></a></h2></h2>
 
 <p>Follow the instructions in the <a href="https://jekyllrb.com/docs/installation/">Jekyll Docs</a> to complete the installation of <code class="language-plaintext highlighter-rouge">Ruby</code>, <code class="language-plaintext highlighter-rouge">RubyGems</code>, <code class="language-plaintext highlighter-rouge">Jekyll</code>, and <code class="language-plaintext highlighter-rouge">Bundler</code>.</p>
 
@@ -1190,6 +1215,11 @@ The merge is likely to conflict with your local modifications. Please be patient
         
         
         
+      <li><a href="/posts/how-to-build-api/">How to build you apis</a></li>
+      
+        
+        
+        
       <li><a href="/posts/hight-low-design/">高内聚低耦合</a></li>
       
     </ul>
@@ -1238,12 +1268,38 @@ The merge is likely to conflict with your local modifications. Please be patient
         
         
 
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
 
 
   <div id="access-tags">
     <div class="panel-heading">Trending Tags</div>
     <div class="d-flex flex-wrap mt-3 mb-1 mr-3">
 
+    
+      
+      <a class="post-tag" href="/tags/api/">api</a>
     
       
       <a class="post-tag" href="/tags/getting-started/">getting started</a>
@@ -1335,6 +1391,19 @@ The merge is likely to conflict with your local modifications. Please be patient
   
 
 
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
 
 
 
@@ -1370,6 +1439,14 @@ The merge is likely to conflict with your local modifications. Please be patient
       
     
   
+    
+    
+      
+      
+        
+        
+        
+          
 
 
 
@@ -1419,6 +1496,50 @@ Atomicity
 事务在执行过程中发生错误，会被回滚到事务开始前的状态，就像这个事务从来没有执行过一样。
 
 原子性关注状态，要么全部成功，要么全部失败，不存在部分成功...
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+    
+      
+      
+      <div class="card">
+        <a href="/posts/how-to-build-api/">
+          <div class="card-body">
+            <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/timeago.js
+-->
+
+
+
+
+
+<em class="timeago small"
+    date="2017-11-12 00:00:00 +0800"
+    >Nov 12, 2017</em>
+
+            <h3 class="pt-0 mt-1 mb-3" data-toc-skip>How to build you apis</h3>
+            <div class="text-muted small">
+              <p>
+                
+
+
+
+
+
+                如何构建自己的api，即不臃肿，也不让人讨厌！
+
+1  : 数据构建
+
+快速构建安全可用的基础数据，fork data，保证 api 数据完整性！
+
+2  : 规划和创造端点
+
+端点理论:将操作计划转换为实际端点需要的功能(参照:REST-FULL API的理论和命名约定的最佳实践)
+API资源应该避免输出自增变量,而是唯一标识
+TDD[测试驱动开发（Test-Driven Developm...
               </p>
             </div>
           </div>
@@ -1482,9 +1603,9 @@ Atomicity
 
 <div class="post-navigation d-flex justify-content-between">
   
-  <a href="/posts/hight-low-design/" class="btn btn-outline-primary"
+  <a href="/posts/how-to-build-api/" class="btn btn-outline-primary"
     prompt="Older">
-    <p>高内聚低耦合</p>
+    <p>How to build you apis</p>
   </a>
   
 
@@ -1597,12 +1718,38 @@ Atomicity
         
         
 
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
 
 
   <div id="access-tags">
     <div class="panel-heading">Trending Tags</div>
     <div class="d-flex flex-wrap mt-3 mb-1 mr-3">
 
+    
+      
+      <a class="post-tag" href="/tags/api/">api</a>
     
       
       <a class="post-tag" href="/tags/getting-started/">getting started</a>

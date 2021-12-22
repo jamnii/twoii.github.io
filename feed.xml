@@ -4,7 +4,7 @@
   <id>http://192.168.222.128:4001/</id>
   <title>Jamnii Shao</title>
   <subtitle>Jamnii Shao, a old person of low spirited.</subtitle>
-  <updated>2021-12-22T15:41:57+08:00</updated>
+  <updated>2021-12-22T19:39:21+08:00</updated>
   <author>
     <name>Jamnii Shao</name>
     <uri>http://192.168.222.128:4001/</uri>
@@ -100,19 +100,75 @@ Consistency
 
 
 
-      Prerequisites
+      
+  Prerequisites
+  Installation    
+      Creating a New Site        
+          Option 1. Using the Chirpy Starter
+          Option 2. Forking on GitHub
+        
+      
+      Installing Dependencies
+    
+  
+  Usage    
+      Configuration
+      Customing Stylesheet
+      Running Local Server
+      Deployment        
+          Deploy by Using Github Actions
+          Manually Build and Deploy
+  ...
+    </summary>
+  
 
-Follow the instructions in the Jekyll Docs to complete the installation of Ruby, RubyGems, Jekyll, and Bundler.
+  </entry>
 
-Installation
+  
+  <entry>
+    <title>How to build you apis</title>
+    <link href="http://192.168.222.128:4001/posts/how-to-build-api/" rel="alternate" type="text/html" title="How to build you apis" />
+    <published>2017-11-12T00:00:00+08:00</published>
+  
+    <updated>2017-11-12T00:00:00+08:00</updated>
+  
+    <id>http://192.168.222.128:4001/posts/how-to-build-api/</id>
+    <content src="http://192.168.222.128:4001/posts/how-to-build-api/" />
+    <author>
+      <name>Jamnii Shao</name>
+    </author>
 
-Creating a New Site
+  
+    
+    <category term="api" />
+    
+  
 
-There are two ways to create a new repository for this theme:
+  
+    <summary>
+      
 
 
-  Using the Chirpy Starter - Easy to upgrade, isolates irrelevant project files so you can focus on writing.
-  Forking on GitHub - Convenient for custom development, but ...
+
+
+
+      如何构建自己的api，即不臃肿，也不让人讨厌！
+
+1  : 数据构建
+
+快速构建安全可用的基础数据，fork data，保证 api 数据完整性！
+
+2  : 规划和创造端点
+
+端点理论:将操作计划转换为实际端点需要的功能(参照:REST-FULL API的理论和命名约定的最佳实践)
+API资源应该避免输出自增变量,而是唯一标识
+TDD[测试驱动开发（Test-Driven Development）]开发模式
+
+2.1 POST 和 PUT 的区别!
+
+PUT是在您事先知道整个URL并且操作是幂等的情况下使用的。(幂等性是一个很花哨的词，意思是“可以一遍又一遍地做而不会产生不同的结果”)
+复数、单数还是两者都有?( /user/1[用户1的信息]  /users[所有用户|1,2用户信息])
+一个谓词是一个操作,一个执行术语,我们的API只需要一个谓词—HTTP方法。所有其他动词都需...
     </summary>
   
 
