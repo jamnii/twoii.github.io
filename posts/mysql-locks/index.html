@@ -47,7 +47,7 @@
 <meta property="twitter:title" content="MySql Locks" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"datePublished":"2021-02-06T00:00:00+08:00","@type":"BlogPosting","dateModified":"2021-02-06T00:00:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://192.168.222.128:4001/posts/mysql-locks/"},"url":"http://192.168.222.128:4001/posts/mysql-locks/","description":"锁是计算机协调多个进程或线程并发访问某一资源的机制。锁保证数据并发访问的一致性、有效性；锁冲突也是影响数据库并发访问性能的一个重要因素。锁是Mysql在服务器层和存储引擎层的的并发控制。 加锁是消耗资源的，锁的各种操作，包括获得锁、检测锁是否已解除、释放锁等。","headline":"MySql Locks","@context":"https://schema.org"}</script>
+{"datePublished":"2021-02-06T00:00:00+08:00","@type":"BlogPosting","dateModified":"2021-12-22T21:00:36+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://192.168.222.128:4001/posts/mysql-locks/"},"url":"http://192.168.222.128:4001/posts/mysql-locks/","description":"锁是计算机协调多个进程或线程并发访问某一资源的机制。锁保证数据并发访问的一致性、有效性；锁冲突也是影响数据库并发访问性能的一个重要因素。锁是Mysql在服务器层和存储引擎层的的并发控制。 加锁是消耗资源的，锁的各种操作，包括获得锁、检测锁是否已解除、释放锁等。","headline":"MySql Locks","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -824,6 +824,17 @@
       
 
     
+      
+
+      
+      
+
+      
+      
+
+      
+
+    
 
     
 
@@ -890,6 +901,28 @@
 
       <!-- lastmod date -->
       
+      <span>
+        Updated
+        <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/timeago.js
+-->
+
+
+
+
+
+<em class="timeago"
+    date="2021-12-22 21:00:36 +0800
+"
+    
+      data-toggle="tooltip"
+      data-placement="bottom"
+      title="Wed, Dec 22, 2021,  9:00 PM +0800"
+    >Dec 22</em>
+
+      </span>
+      
 
       <!-- read time -->
       <!--
@@ -911,8 +944,8 @@
 
 <!-- return element -->
 <span class="readtime" data-toggle="tooltip" data-placement="bottom"
-  title="6825 words">
-  <em>37 min</em> read</span>
+  title="7052 words">
+  <em>39 min</em> read</span>
 
 
       <!-- page views -->
@@ -1317,9 +1350,9 @@ RR级别下才有
   </li>
   <li>并发插入相同记录，可能死锁(某一个回滚)</li>
   <li>并发插入，可能出现间隙锁死锁(难排查)</li>
-  <li>show engine innodb status; 可以查看InnoDB的锁情况，也可以调试死锁</li>
-  <li>show status like ‘innodb_row_lock%’;查看InnoDB_row_lock的状态</li>
-  <li>show variables like ‘%lock_wait_timeout%’;</li>
+  <li><code class="language-plaintext highlighter-rouge">show engine innodb status;</code> 可以查看InnoDB的锁情况，也可以调试死锁</li>
+  <li><code class="language-plaintext highlighter-rouge">show status like 'innodb_row_lock%';</code> 查看InnoDB_row_lock的状态</li>
+  <li><code class="language-plaintext highlighter-rouge">show variables like '%lock_wait_timeout%';</code> 查看锁设置的等待时间</li>
 </ul>
 
 <h4 id="innodb-row-lock">Innodb Row Lock<a href="#innodb-row-lock"><i class="fas fa-hashtag"></i></a></h4></h4>
@@ -1351,6 +1384,69 @@ Innodb_row_lock_waits:系统启动到现在总共等待的次数；
 对于这5个状态变量，比较重要的是：
 
 Innodb_row_lock_time_avg，Innodb_row_lock_waits，Innodb_row_lock_time。
+</pre></td></tr></tbody></table></code></div></div>
+
+<h4 id="常用的分析命令">常用的分析命令<a href="#常用的分析命令"><i class="fas fa-hashtag"></i></a></h4></h4>
+<div class="language-plaintext highlighter-rouge"><div class="code-header">
+        <span label-text="Plaintext"><i class="fas fa-code small"></i></span>
+      <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+</pre></td><td class="rouge-code"><pre>#全局查看锁情况
+show engine innodb status \G;
+
+#查看锁情况
+show engine innodb status;
+
+#上面两个命令只会记录最新的锁状态
+#如果需要查看历史锁状态，需要设置命令。
+#命令设置成功后，会将锁的信息输出到mysql的错误日志中
+#慎用
+set global innodb_print_all_deadlocks=1;
+
+#查看InnoDB_row_lock的状态
+show status like 'innodb_row_lock%';
+
+#查看锁设置的等待时间
+show variables like '%lock_wait_timeout%';
+
+#记录了事务请求但是还没获得的锁，即等待获得的锁
+select * FROM information_schema.INNODB_LOCKS;
+
+#查看等待中的锁
+select * FROM information_schema.INNODB_LOCK_WAITS;
+
+#查看已开启的事务
+select * from information_schema.INNODB_TRX;
+
+#查看所有进程
+show full processlist ;
 </pre></td></tr></tbody></table></code></div></div>
 
 <h4 id="死锁">死锁<a href="#死锁"><i class="fas fa-hashtag"></i></a></h4></h4>
@@ -2123,6 +2219,11 @@ AB同时等待彼此的锁，从而导致死锁。
   <div id="access-lastmod" class="post">
     <div class="panel-heading">Recent Update</div>
     <ul class="post-content pl-0 pb-1 ml-1 mt-2">
+      
+        
+        
+        
+      <li><a href="/posts/mysql-locks/">MySql Locks</a></li>
       
         
         
