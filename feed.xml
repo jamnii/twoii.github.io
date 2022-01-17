@@ -3,8 +3,8 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>http://192.168.222.128:4001/</id>
   <title>Jamnii</title>
-  <subtitle>Jamnii, a old person of low spirited.</subtitle>
-  <updated>2021-12-27T15:02:02+08:00</updated>
+  <subtitle>Jamnii, an old person of low-spirited.</subtitle>
+  <updated>2022-01-17T10:01:30+08:00</updated>
   <author>
     <name>Jamnii</name>
     <uri>http://192.168.222.128:4001/</uri>
@@ -13,7 +13,7 @@
   <link rel="alternate" type="text/html" hreflang="en"
     href="http://192.168.222.128:4001/"/>
   <generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator>
-  <rights> © 2021 Jamnii </rights>
+  <rights> © 2022 Jamnii </rights>
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
