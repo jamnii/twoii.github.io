@@ -47,7 +47,7 @@ const resource = [
 const allowedDomains = [
   
 
-  '192.168.222.128:4001',
+  '0.0.0.0:4001',
 
   'fonts.gstatic.com',
   'fonts.googleapis.com',

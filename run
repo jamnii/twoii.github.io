@@ -1,2 +1,2 @@
 #!/bin/bash
-sudo bundle exec jekyll serve --trace -H 192.168.222.128 -P 4001
+sudo bundle exec jekyll serve --trace -H 0.0.0.0 -P 4001

@@ -6,7 +6,7 @@
 
 
 
-<html lang="en"
+<html lang="zh-CN"
   
 >
 
@@ -21,10 +21,10 @@
   
 
     <!-- i18n for `_javascript/utils/timeago.js` -->
-    <meta name="day-prompt" content="days ago">
-    <meta name="hour-prompt" content="hours ago">
-    <meta name="minute-prompt" content="minutes ago">
-    <meta name="justnow-prompt" content="just now">
+    <meta name="day-prompt" content="天前">
+    <meta name="hour-prompt" content="小时前">
+    <meta name="minute-prompt" content="分钟前">
+    <meta name="justnow-prompt" content="刚刚">
 
     
 
@@ -35,23 +35,23 @@
   <!-- Begin Jekyll SEO tag v2.7.1 -->
 <meta name="generator" content="Jekyll v4.2.1" />
 <meta property="og:title" content="高内聚低耦合" />
-<meta property="og:locale" content="en" />
+<meta property="og:locale" content="zh_CN" />
 <meta name="description" content="模块之间存在依赖， 导致改动可能会互相影响， 关系越紧密， 耦合越强， 模块独立性越差。 模块内部的元素，关联性越强， 则内聚越高， 模块单一性更强。" />
 <meta property="og:description" content="模块之间存在依赖， 导致改动可能会互相影响， 关系越紧密， 耦合越强， 模块独立性越差。 模块内部的元素，关联性越强， 则内聚越高， 模块单一性更强。" />
-<link rel="canonical" href="http://192.168.222.128:4001/posts/hight-low-design/" />
-<meta property="og:url" content="http://192.168.222.128:4001/posts/hight-low-design/" />
-<meta property="og:site_name" content="Jamnii" />
+<link rel="canonical" href="http://0.0.0.0:4001/posts/hight-low-design/" />
+<meta property="og:url" content="http://0.0.0.0:4001/posts/hight-low-design/" />
+<meta property="og:site_name" content="JiaMing Shao" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2017-03-15T00:00:00+08:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="高内聚低耦合" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"高内聚低耦合","@type":"BlogPosting","datePublished":"2017-03-15T00:00:00+08:00","dateModified":"2017-03-05T16:42:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://192.168.222.128:4001/posts/hight-low-design/"},"url":"http://192.168.222.128:4001/posts/hight-low-design/","description":"模块之间存在依赖， 导致改动可能会互相影响， 关系越紧密， 耦合越强， 模块独立性越差。 模块内部的元素，关联性越强， 则内聚越高， 模块单一性更强。","@context":"https://schema.org"}</script>
+{"mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4001/posts/hight-low-design/"},"@type":"BlogPosting","url":"http://0.0.0.0:4001/posts/hight-low-design/","headline":"高内聚低耦合","dateModified":"2017-03-05T16:42:00+08:00","datePublished":"2017-03-15T00:00:00+08:00","description":"模块之间存在依赖， 导致改动可能会互相影响， 关系越紧密， 耦合越强， 模块独立性越差。 模块内部的元素，关联性越强， 则内聚越高， 模块单一性更强。","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-  <title>高内聚低耦合 | Jamnii
+  <title>高内聚低耦合 | JiaMing Shao
   </title>
 
   <!--
@@ -66,8 +66,8 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons_bear/favicon-16x16.png">
 <link rel="manifest" href="/assets/img/favicons_bear/site.webmanifest">
 <link rel="shortcut icon" href="/assets/img/favicons_bear/favicon.ico">
-<meta name="apple-mobile-web-app-title" content="Jamnii">
-<meta name="application-name" content="Jamnii">
+<meta name="apple-mobile-web-app-title" content="JiaMing Shao">
+<meta name="application-name" content="JiaMing Shao">
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="msapplication-config" content="/assets/img/favicons_bear/browserconfig.xml">
 <meta name="theme-color" content="#ffffff">
@@ -252,7 +252,7 @@
   The Side Bar
 -->
 
-<div id="sidebar" class="d-flex flex-column align-items-end" lang="en">
+<div id="sidebar" class="d-flex flex-column align-items-end" lang="zh-CN">
   <div class="profile-wrapper text-center">
     <div id="avatar">
       <a href="/" alt="avatar" class="mx-auto">
@@ -264,7 +264,7 @@
     </div>
 
     <div class="site-title mt-3">
-      <a href="/">Jamnii</a>
+      <a href="/">JiaMing Shao</a>
     </div>
     <div class="site-subtitle font-italic">an old person of low-spirited.</div>
 
@@ -276,7 +276,7 @@
     <li class="nav-item">
       <a href="/" class="nav-link">
         <i class="fa-fw fas fa-home ml-xl-3 mr-xl-3 unloaded"></i>
-        <span>HOME</span>
+        <span>首页</span>
       </a>
     </li>
     <!-- the real tabs -->
@@ -286,7 +286,7 @@
         <i class="fa-fw fas fa-stream ml-xl-3 mr-xl-3 unloaded"></i>
         
 
-        <span>CATEGORIES</span>
+        <span>分类</span>
       </a>
     </li> <!-- .nav-item -->
     
@@ -295,7 +295,7 @@
         <i class="fa-fw fas fa-tag ml-xl-3 mr-xl-3 unloaded"></i>
         
 
-        <span>TAGS</span>
+        <span>标签</span>
       </a>
     </li> <!-- .nav-item -->
     
@@ -304,7 +304,7 @@
         <i class="fa-fw fas fa-archive ml-xl-3 mr-xl-3 unloaded"></i>
         
 
-        <span>ARCHIVES</span>
+        <span>归档</span>
       </a>
     </li> <!-- .nav-item -->
     
@@ -313,7 +313,7 @@
         <i class="fa-fw fas fa-info-circle ml-xl-3 mr-xl-3 unloaded"></i>
         
 
-        <span>ABOUT</span>
+        <span>关于</span>
       </a>
     </li> <!-- .nav-item -->
     
@@ -322,7 +322,7 @@
         <i class="fa-fw fas fa-tag ml-xl-3 mr-xl-3 unloaded"></i>
         
 
-        <span>LINK</span>
+        <span>链接</span>
       </a>
     </li> <!-- .nav-item -->
     
@@ -363,7 +363,7 @@
         
           <span>
             <a href="/">
-              Home
+              首页
             </a>
           </span>
 
@@ -392,17 +392,17 @@
     <i id="sidebar-trigger" class="fas fa-bars fa-fw"></i>
 
     <div id="topbar-title">
-      Post
+      文章
     </div>
 
     <i id="search-trigger" class="fas fa-search fa-fw"></i>
     <span id="search-wrapper" class="align-items-center">
       <i class="fas fa-search fa-fw"></i>
       <input class="form-control" id="search-input" type="search"
-        aria-label="search" autocomplete="off" placeholder="Search...">
+        aria-label="search" autocomplete="off" placeholder="搜索...">
       <i class="fa fa-times-circle fa-fw" id="search-cleaner"></i>
     </span>
-    <span id="search-cancel" >Cancel</span>
+    <span id="search-cancel" >取消</span>
   </div>
 
 </div>
@@ -883,10 +883,10 @@
 
     
 
-    By
+    作者
     <em>
       
-        Jamnii
+        JiaMing Shao
       
     </em>
   </div>
@@ -895,7 +895,7 @@
     <div>
       <!-- published date -->
       <span>
-        Posted
+        发表于
         <!--
   Date format snippet
   See: ${JS_ROOT}/utils/timeago.js
@@ -910,15 +910,15 @@
     
       data-toggle="tooltip"
       data-placement="bottom"
-      title="Wed, Mar 15, 2017, 12:00 AM +0800"
-    >Mar 15, 2017</em>
+      title="2017-03-15, 00:00 +0800"
+    >2017-03-15</em>
 
       </span>
 
       <!-- lastmod date -->
       
       <span>
-        Updated
+        更新于
         <!--
   Date format snippet
   See: ${JS_ROOT}/utils/timeago.js
@@ -933,8 +933,8 @@
     
       data-toggle="tooltip"
       data-placement="bottom"
-      title="Sun, Mar  5, 2017,  4:42 PM +0800"
-    >Mar  5, 2017</em>
+      title="2017-03-05, 16:42 +0800"
+    >2017-03-05</em>
 
       </span>
       
@@ -959,8 +959,8 @@
 
 <!-- return element -->
 <span class="readtime" data-toggle="tooltip" data-placement="bottom"
-  title="846 words">
-  <em>4 min</em> read</span>
+  title="846 字">
+  <em>4 分钟</em>阅读</span>
 
 
       <!-- page views -->
@@ -1064,11 +1064,11 @@
 
         
 
-        This post is licensed under 
+        本文由作者按照 
         <a href="https://creativecommons.org/licenses/by/4.0/">
           CC BY 4.0
         </a>
-         by the author.
+         进行授权
 
       
     </div>
@@ -1078,7 +1078,7 @@
 -->
 
 <div class="share-wrapper">
-  <span class="share-label text-muted mr-1">Share</span>
+  <span class="share-label text-muted mr-1">分享</span>
   <span class="share-icons">
     
     
@@ -1087,8 +1087,8 @@
 
     <i id="copy-link" class="fa-fw fas fa-link small"
         data-toggle="tooltip" data-placement="top"
-        title="Copy link"
-        title-succeed="Link copied successfully!">
+        title="分享链接"
+        title-succeed="链接已复制！">
     </i>
 
   </span>
@@ -1126,7 +1126,7 @@
 
 
   <div id="access-lastmod" class="post">
-    <div class="panel-heading">Recent Update</div>
+    <div class="panel-heading">最近更新</div>
     <ul class="post-content pl-0 pb-1 ml-1 mt-2">
       
         
@@ -1388,7 +1388,7 @@
 
 
   <div id="access-tags">
-    <div class="panel-heading">Trending Tags</div>
+    <div class="panel-heading">热门标签</div>
     <div class="d-flex flex-wrap mt-3 mb-1 mr-3">
 
     
@@ -1430,7 +1430,7 @@
 <script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.js"></script>
 
 <div id="toc-wrapper" class="pl-0 pr-4 mb-5">
-  <div class="panel-heading pl-3 pt-2 mb-2">Contents</div>
+  <div class="panel-heading pl-3 pt-2 mb-2">文章内容</div>
   <nav id="toc" data-toggle="toc"></nav>
 </div>
 
@@ -1583,7 +1583,7 @@
 
   <div id="related-posts" class="mt-5 mb-2 mb-sm-4">
     <h3 class="pt-2 mt-1 mb-4 ml-1"
-      data-toc-skip>Further Reading</h3>
+      data-toc-skip>相关文章</h3>
     <div class="card-deck mb-4">
     
       
@@ -1602,7 +1602,7 @@
 
 <em class="timeago small"
     date="2021-02-25 00:00:00 +0800"
-    >Feb 25, 2021</em>
+    >2021-02-25</em>
 
             <h3 class="pt-0 mt-1 mb-3" data-toc-skip>CGI、FastCGI、PHP-FPM、Reactor、I/O复用模型</h3>
             <div class="text-muted small">
@@ -1646,7 +1646,7 @@ common gateway interface (公共网关接口)
 
 <em class="timeago small"
     date="2021-02-20 16:42:00 +0800"
-    >Feb 20, 2021</em>
+    >2021-02-20</em>
 
             <h3 class="pt-0 mt-1 mb-3" data-toc-skip>MySQL Transaction</h3>
             <div class="text-muted small">
@@ -1691,7 +1691,7 @@ Atomicity
 
 <em class="timeago small"
     date="2021-02-06 00:00:00 +0800"
-    >Feb  6, 2021</em>
+    >2021-02-06</em>
 
             <h3 class="pt-0 mt-1 mb-3" data-toc-skip>MySql Locks</h3>
             <div class="text-muted small">
@@ -1746,14 +1746,14 @@ Atomicity
 <div class="post-navigation d-flex justify-content-between">
   
   <span class="btn btn-outline-primary disabled"
-    prompt="Older">
+    prompt="上一篇">
     <p>-</p>
   </span>
   
 
   
   <a href="/posts/how-to-build-api/" class="btn btn-outline-primary"
-    prompt="Newer">
+    prompt="下一篇">
     <p>How to build you apis</p>
   </a>
   
@@ -1783,11 +1783,11 @@ Atomicity
   <div class="d-flex justify-content-between align-items-center text-muted">
     <div class="footer-left">
       <p class="mb-0">
-        © 2022
-        <a href="">Jamnii</a>.
+        © 2023
+        <a href="">JiaMing Shao</a>.
         
         <span data-toggle="tooltip" data-placement="top"
-          title="Except where otherwise noted, the blog posts on this site are licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) License by the author.">Some rights reserved.</span>
+          title="除非另有说明，本网站上的博客文章均由作者按照知识共享署名 4.0 国际 (CC BY 4.0) 许可协议进行授权。">保留部分权利。</span>
         
       </p>
     </div>
@@ -1798,11 +1798,11 @@ Atomicity
 
         
 
-        Powered by 
+        本站由 
           <a href="#" target="_blank" rel="noopener">Jekyll</a>
-         with 
+         生成，采用 
           <a href="#" target="_blank" rel="noopener">Chirpy</a>
-         theme.
+         主题。
 
       </p>
     </div>
@@ -2048,7 +2048,7 @@ Atomicity
 
 
   <div id="access-tags">
-    <div class="panel-heading">Trending Tags</div>
+    <div class="panel-heading">热门标签</div>
     <div class="d-flex flex-wrap mt-3 mb-1 mr-3">
 
     
@@ -2111,7 +2111,7 @@ SimpleJekyllSearch({
   resultsContainer: document.getElementById('search-results'),
   json: '/assets/js/data/search.json',
   searchResultTemplate: '<div class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-lg-4 pr-lg-4 pl-xl-0 pr-xl-0">  <a href="{url}">{title}</a>  <div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1">    {categories}    {tags}  </div>  <p>{snippet}</p></div>',
-  noResultsText: '<p class="mt-5">Oops! No result founds.</p>',
+  noResultsText: '<p class="mt-5">搜索结果为空</p>',
   templateMiddleware: function(prop, value, template) {
     if (prop === 'categories') {
       if (value === '') {

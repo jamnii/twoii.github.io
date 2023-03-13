@@ -6,7 +6,7 @@
 
 
 
-<html lang="en"
+<html lang="zh-CN"
   
 >
 
@@ -21,10 +21,10 @@
   
 
     <!-- i18n for `_javascript/utils/timeago.js` -->
-    <meta name="day-prompt" content="days ago">
-    <meta name="hour-prompt" content="hours ago">
-    <meta name="minute-prompt" content="minutes ago">
-    <meta name="justnow-prompt" content="just now">
+    <meta name="day-prompt" content="天前">
+    <meta name="hour-prompt" content="小时前">
+    <meta name="minute-prompt" content="分钟前">
+    <meta name="justnow-prompt" content="刚刚">
 
     
 
@@ -35,23 +35,23 @@
   <!-- Begin Jekyll SEO tag v2.7.1 -->
 <meta name="generator" content="Jekyll v4.2.1" />
 <meta property="og:title" content="MySQL Transaction" />
-<meta property="og:locale" content="en" />
+<meta property="og:locale" content="zh_CN" />
 <meta name="description" content="MySQL 事务主要用于处理操作量大，复杂度高的数据。" />
 <meta property="og:description" content="MySQL 事务主要用于处理操作量大，复杂度高的数据。" />
-<link rel="canonical" href="http://192.168.222.128:4001/posts/mysql-transaction/" />
-<meta property="og:url" content="http://192.168.222.128:4001/posts/mysql-transaction/" />
-<meta property="og:site_name" content="Jamnii" />
+<link rel="canonical" href="http://0.0.0.0:4001/posts/mysql-transaction/" />
+<meta property="og:url" content="http://0.0.0.0:4001/posts/mysql-transaction/" />
+<meta property="og:site_name" content="JiaMing Shao" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2021-02-20T16:42:00+08:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="MySQL Transaction" />
 <meta name="google-site-verification" content="google_meta_tag_verification" />
 <script type="application/ld+json">
-{"headline":"MySQL Transaction","@type":"BlogPosting","datePublished":"2021-02-20T16:42:00+08:00","dateModified":"2021-02-20T16:42:00+08:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://192.168.222.128:4001/posts/mysql-transaction/"},"url":"http://192.168.222.128:4001/posts/mysql-transaction/","description":"MySQL 事务主要用于处理操作量大，复杂度高的数据。","@context":"https://schema.org"}</script>
+{"mainEntityOfPage":{"@type":"WebPage","@id":"http://0.0.0.0:4001/posts/mysql-transaction/"},"@type":"BlogPosting","url":"http://0.0.0.0:4001/posts/mysql-transaction/","headline":"MySQL Transaction","dateModified":"2021-02-20T16:42:00+08:00","datePublished":"2021-02-20T16:42:00+08:00","description":"MySQL 事务主要用于处理操作量大，复杂度高的数据。","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-  <title>MySQL Transaction | Jamnii
+  <title>MySQL Transaction | JiaMing Shao
   </title>
 
   <!--
@@ -66,8 +66,8 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons_bear/favicon-16x16.png">
 <link rel="manifest" href="/assets/img/favicons_bear/site.webmanifest">
 <link rel="shortcut icon" href="/assets/img/favicons_bear/favicon.ico">
-<meta name="apple-mobile-web-app-title" content="Jamnii">
-<meta name="application-name" content="Jamnii">
+<meta name="apple-mobile-web-app-title" content="JiaMing Shao">
+<meta name="application-name" content="JiaMing Shao">
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="msapplication-config" content="/assets/img/favicons_bear/browserconfig.xml">
 <meta name="theme-color" content="#ffffff">
@@ -252,7 +252,7 @@
   The Side Bar
 -->
 
-<div id="sidebar" class="d-flex flex-column align-items-end" lang="en">
+<div id="sidebar" class="d-flex flex-column align-items-end" lang="zh-CN">
   <div class="profile-wrapper text-center">
     <div id="avatar">
       <a href="/" alt="avatar" class="mx-auto">
@@ -264,7 +264,7 @@
     </div>
 
     <div class="site-title mt-3">
-      <a href="/">Jamnii</a>
+      <a href="/">JiaMing Shao</a>
     </div>
     <div class="site-subtitle font-italic">an old person of low-spirited.</div>
 
@@ -276,7 +276,7 @@
     <li class="nav-item">
       <a href="/" class="nav-link">
         <i class="fa-fw fas fa-home ml-xl-3 mr-xl-3 unloaded"></i>
-        <span>HOME</span>
+        <span>首页</span>
       </a>
     </li>
     <!-- the real tabs -->
@@ -286,7 +286,7 @@
         <i class="fa-fw fas fa-stream ml-xl-3 mr-xl-3 unloaded"></i>
         
 
-        <span>CATEGORIES</span>
+        <span>分类</span>
       </a>
     </li> <!-- .nav-item -->
     
@@ -295,7 +295,7 @@
         <i class="fa-fw fas fa-tag ml-xl-3 mr-xl-3 unloaded"></i>
         
 
-        <span>TAGS</span>
+        <span>标签</span>
       </a>
     </li> <!-- .nav-item -->
     
@@ -304,7 +304,7 @@
         <i class="fa-fw fas fa-archive ml-xl-3 mr-xl-3 unloaded"></i>
         
 
-        <span>ARCHIVES</span>
+        <span>归档</span>
       </a>
     </li> <!-- .nav-item -->
     
@@ -313,7 +313,7 @@
         <i class="fa-fw fas fa-info-circle ml-xl-3 mr-xl-3 unloaded"></i>
         
 
-        <span>ABOUT</span>
+        <span>关于</span>
       </a>
     </li> <!-- .nav-item -->
     
@@ -322,7 +322,7 @@
         <i class="fa-fw fas fa-tag ml-xl-3 mr-xl-3 unloaded"></i>
         
 
-        <span>LINK</span>
+        <span>链接</span>
       </a>
     </li> <!-- .nav-item -->
     
@@ -363,7 +363,7 @@
         
           <span>
             <a href="/">
-              Home
+              首页
             </a>
           </span>
 
@@ -392,17 +392,17 @@
     <i id="sidebar-trigger" class="fas fa-bars fa-fw"></i>
 
     <div id="topbar-title">
-      Post
+      文章
     </div>
 
     <i id="search-trigger" class="fas fa-search fa-fw"></i>
     <span id="search-wrapper" class="align-items-center">
       <i class="fas fa-search fa-fw"></i>
       <input class="form-control" id="search-input" type="search"
-        aria-label="search" autocomplete="off" placeholder="Search...">
+        aria-label="search" autocomplete="off" placeholder="搜索...">
       <i class="fa fa-times-circle fa-fw" id="search-cleaner"></i>
     </span>
-    <span id="search-cancel" >Cancel</span>
+    <span id="search-cancel" >取消</span>
   </div>
 
 </div>
@@ -647,10 +647,10 @@
 
     
 
-    By
+    作者
     <em>
       
-        Jamnii
+        JiaMing Shao
       
     </em>
   </div>
@@ -659,7 +659,7 @@
     <div>
       <!-- published date -->
       <span>
-        Posted
+        发表于
         <!--
   Date format snippet
   See: ${JS_ROOT}/utils/timeago.js
@@ -674,15 +674,15 @@
     
       data-toggle="tooltip"
       data-placement="bottom"
-      title="Sat, Feb 20, 2021,  4:42 PM +0800"
-    >Feb 20, 2021</em>
+      title="2021-02-20, 16:42 +0800"
+    >2021-02-20</em>
 
       </span>
 
       <!-- lastmod date -->
       
       <span>
-        Updated
+        更新于
         <!--
   Date format snippet
   See: ${JS_ROOT}/utils/timeago.js
@@ -697,8 +697,8 @@
     
       data-toggle="tooltip"
       data-placement="bottom"
-      title="Sat, Feb 20, 2021,  4:42 PM +0800"
-    >Feb 20, 2021</em>
+      title="2021-02-20, 16:42 +0800"
+    >2021-02-20</em>
 
       </span>
       
@@ -723,8 +723,8 @@
 
 <!-- return element -->
 <span class="readtime" data-toggle="tooltip" data-placement="bottom"
-  title="1784 words">
-  <em>9 min</em> read</span>
+  title="1784 字">
+  <em>9 分钟</em>阅读</span>
 
 
       <!-- page views -->
@@ -756,7 +756,7 @@
 
 <div class="language-plaintext highlighter-rouge"><div class="code-header">
         <span label-text="Plaintext"><i class="fas fa-code small"></i></span>
-      <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+      <button aria-label="copy" title-succeed="已复制！"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 </pre></td><td class="rouge-code"><pre>(memberA 向 memberB 转 100,在其它事物看来,要么 memberA 减少了, 要么 memberB 增加了)
@@ -780,7 +780,7 @@
 
     <div class="language-plaintext highlighter-rouge"><div class="code-header">
         <span label-text="Plaintext"><i class="fas fa-code small"></i></span>
-      <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+      <button aria-label="copy" title-succeed="已复制！"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -797,7 +797,7 @@ set session transaction isolation level repeatable read;
 
     <div class="language-plaintext highlighter-rouge"><div class="code-header">
         <span label-text="Plaintext"><i class="fas fa-code small"></i></span>
-      <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+      <button aria-label="copy" title-succeed="已复制！"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -853,7 +853,7 @@ explain sql;
 
 <div class="language-plaintext highlighter-rouge"><div class="code-header">
         <span label-text="Plaintext"><i class="fas fa-code small"></i></span>
-      <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+      <button aria-label="copy" title-succeed="已复制！"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -895,7 +895,7 @@ A事物并没有修改成功，但B事物已经返回 name = test2，出现了�
 
 <div class="language-plaintext highlighter-rouge"><div class="code-header">
         <span label-text="Plaintext"><i class="fas fa-code small"></i></span>
-      <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+      <button aria-label="copy" title-succeed="已复制！"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -957,7 +957,7 @@ start                   start → 执行 name = test2 → commit.(At1)
 
 <div class="language-plaintext highlighter-rouge"><div class="code-header">
         <span label-text="Plaintext"><i class="fas fa-code small"></i></span>
-      <button aria-label="copy" title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+      <button aria-label="copy" title-succeed="已复制！"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -1038,11 +1038,11 @@ start                   start
 
         
 
-        This post is licensed under 
+        本文由作者按照 
         <a href="https://creativecommons.org/licenses/by/4.0/">
           CC BY 4.0
         </a>
-         by the author.
+         进行授权
 
       
     </div>
@@ -1052,7 +1052,7 @@ start                   start
 -->
 
 <div class="share-wrapper">
-  <span class="share-label text-muted mr-1">Share</span>
+  <span class="share-label text-muted mr-1">分享</span>
   <span class="share-icons">
     
     
@@ -1061,8 +1061,8 @@ start                   start
 
     <i id="copy-link" class="fa-fw fas fa-link small"
         data-toggle="tooltip" data-placement="top"
-        title="Copy link"
-        title-succeed="Link copied successfully!">
+        title="分享链接"
+        title-succeed="链接已复制！">
     </i>
 
   </span>
@@ -1100,7 +1100,7 @@ start                   start
 
 
   <div id="access-lastmod" class="post">
-    <div class="panel-heading">Recent Update</div>
+    <div class="panel-heading">最近更新</div>
     <ul class="post-content pl-0 pb-1 ml-1 mt-2">
       
         
@@ -1362,7 +1362,7 @@ start                   start
 
 
   <div id="access-tags">
-    <div class="panel-heading">Trending Tags</div>
+    <div class="panel-heading">热门标签</div>
     <div class="d-flex flex-wrap mt-3 mb-1 mr-3">
 
     
@@ -1404,7 +1404,7 @@ start                   start
 <script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.js"></script>
 
 <div id="toc-wrapper" class="pl-0 pr-4 mb-5">
-  <div class="panel-heading pl-3 pt-2 mb-2">Contents</div>
+  <div class="panel-heading pl-3 pt-2 mb-2">文章内容</div>
   <nav id="toc" data-toggle="toc"></nav>
 </div>
 
@@ -1556,7 +1556,7 @@ start                   start
 
   <div id="related-posts" class="mt-5 mb-2 mb-sm-4">
     <h3 class="pt-2 mt-1 mb-4 ml-1"
-      data-toc-skip>Further Reading</h3>
+      data-toc-skip>相关文章</h3>
     <div class="card-deck mb-4">
     
       
@@ -1575,7 +1575,7 @@ start                   start
 
 <em class="timeago small"
     date="2021-02-06 00:00:00 +0800"
-    >Feb  6, 2021</em>
+    >2021-02-06</em>
 
             <h3 class="pt-0 mt-1 mb-3" data-toc-skip>MySql Locks</h3>
             <div class="text-muted small">
@@ -1616,7 +1616,7 @@ start                   start
 
 <em class="timeago small"
     date="2021-02-25 00:00:00 +0800"
-    >Feb 25, 2021</em>
+    >2021-02-25</em>
 
             <h3 class="pt-0 mt-1 mb-3" data-toc-skip>CGI、FastCGI、PHP-FPM、Reactor、I/O复用模型</h3>
             <div class="text-muted small">
@@ -1660,7 +1660,7 @@ common gateway interface (公共网关接口)
 
 <em class="timeago small"
     date="2019-08-09 20:55:00 +0800"
-    >Aug  9, 2019</em>
+    >2019-08-09</em>
 
             <h3 class="pt-0 mt-1 mb-3" data-toc-skip>Getting Started</h3>
             <div class="text-muted small">
@@ -1699,14 +1699,14 @@ common gateway interface (公共网关接口)
 <div class="post-navigation d-flex justify-content-between">
   
   <a href="/posts/mysql-locks/" class="btn btn-outline-primary"
-    prompt="Older">
+    prompt="上一篇">
     <p>MySql Locks</p>
   </a>
   
 
   
   <a href="/posts/php-fpm-other/" class="btn btn-outline-primary"
-    prompt="Newer">
+    prompt="下一篇">
     <p>CGI、FastCGI、PHP-FPM、Reactor、I/O复用模型</p>
   </a>
   
@@ -1736,11 +1736,11 @@ common gateway interface (公共网关接口)
   <div class="d-flex justify-content-between align-items-center text-muted">
     <div class="footer-left">
       <p class="mb-0">
-        © 2022
-        <a href="">Jamnii</a>.
+        © 2023
+        <a href="">JiaMing Shao</a>.
         
         <span data-toggle="tooltip" data-placement="top"
-          title="Except where otherwise noted, the blog posts on this site are licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) License by the author.">Some rights reserved.</span>
+          title="除非另有说明，本网站上的博客文章均由作者按照知识共享署名 4.0 国际 (CC BY 4.0) 许可协议进行授权。">保留部分权利。</span>
         
       </p>
     </div>
@@ -1751,11 +1751,11 @@ common gateway interface (公共网关接口)
 
         
 
-        Powered by 
+        本站由 
           <a href="#" target="_blank" rel="noopener">Jekyll</a>
-         with 
+         生成，采用 
           <a href="#" target="_blank" rel="noopener">Chirpy</a>
-         theme.
+         主题。
 
       </p>
     </div>
@@ -2001,7 +2001,7 @@ common gateway interface (公共网关接口)
 
 
   <div id="access-tags">
-    <div class="panel-heading">Trending Tags</div>
+    <div class="panel-heading">热门标签</div>
     <div class="d-flex flex-wrap mt-3 mb-1 mr-3">
 
     
@@ -2064,7 +2064,7 @@ SimpleJekyllSearch({
   resultsContainer: document.getElementById('search-results'),
   json: '/assets/js/data/search.json',
   searchResultTemplate: '<div class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-lg-4 pr-lg-4 pl-xl-0 pr-xl-0">  <a href="{url}">{title}</a>  <div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1">    {categories}    {tags}  </div>  <p>{snippet}</p></div>',
-  noResultsText: '<p class="mt-5">Oops! No result founds.</p>',
+  noResultsText: '<p class="mt-5">搜索结果为空</p>',
   templateMiddleware: function(prop, value, template) {
     if (prop === 'categories') {
       if (value === '') {

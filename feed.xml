@@ -1,19 +1,19 @@
 
 
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <id>http://192.168.222.128:4001/</id>
-  <title>Jamnii</title>
-  <subtitle>Jamnii, an old person of low-spirited.</subtitle>
-  <updated>2022-10-09T09:39:58+08:00</updated>
+  <id>http://0.0.0.0:4001/</id>
+  <title>JiaMing Shao</title>
+  <subtitle>JiaMing Shao, an old person of low-spirited.</subtitle>
+  <updated>2023-03-13T10:36:18+08:00</updated>
   <author>
-    <name>Jamnii</name>
-    <uri>http://192.168.222.128:4001/</uri>
+    <name>JiaMing Shao</name>
+    <uri>http://0.0.0.0:4001/</uri>
   </author>
-  <link rel="self" type="application/atom+xml" href="http://192.168.222.128:4001/feed.xml"/>
-  <link rel="alternate" type="text/html" hreflang="en"
-    href="http://192.168.222.128:4001/"/>
+  <link rel="self" type="application/atom+xml" href="http://0.0.0.0:4001/feed.xml"/>
+  <link rel="alternate" type="text/html" hreflang="zh-CN"
+    href="http://0.0.0.0:4001/"/>
   <generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator>
-  <rights> © 2022 Jamnii </rights>
+  <rights> © 2023 JiaMing Shao </rights>
   <icon>/assets/img/favicons/favicon.ico</icon>
   <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
@@ -21,15 +21,15 @@
   
   <entry>
     <title>CGI、FastCGI、PHP-FPM、Reactor、I/O复用模型</title>
-    <link href="http://192.168.222.128:4001/posts/php-fpm-other/" rel="alternate" type="text/html" title="CGI、FastCGI、PHP-FPM、Reactor、I/O复用模型" />
+    <link href="http://0.0.0.0:4001/posts/php-fpm-other/" rel="alternate" type="text/html" title="CGI、FastCGI、PHP-FPM、Reactor、I/O复用模型" />
     <published>2021-02-25T00:00:00+08:00</published>
   
     <updated>2021-02-25T00:00:00+08:00</updated>
   
-    <id>http://192.168.222.128:4001/posts/php-fpm-other/</id>
-    <content src="http://192.168.222.128:4001/posts/php-fpm-other/" />
+    <id>http://0.0.0.0:4001/posts/php-fpm-other/</id>
+    <content src="http://0.0.0.0:4001/posts/php-fpm-other/" />
     <author>
-      <name>Jamnii</name>
+      <name>JiaMing Shao</name>
     </author>
 
   
@@ -77,15 +77,15 @@ CGI工作原理
   
   <entry>
     <title>MySQL Transaction</title>
-    <link href="http://192.168.222.128:4001/posts/mysql-transaction/" rel="alternate" type="text/html" title="MySQL Transaction" />
+    <link href="http://0.0.0.0:4001/posts/mysql-transaction/" rel="alternate" type="text/html" title="MySQL Transaction" />
     <published>2021-02-20T16:42:00+08:00</published>
   
     <updated>2021-02-20T16:42:00+08:00</updated>
   
-    <id>http://192.168.222.128:4001/posts/mysql-transaction/</id>
-    <content src="http://192.168.222.128:4001/posts/mysql-transaction/" />
+    <id>http://0.0.0.0:4001/posts/mysql-transaction/</id>
+    <content src="http://0.0.0.0:4001/posts/mysql-transaction/" />
     <author>
-      <name>Jamnii</name>
+      <name>JiaMing Shao</name>
     </author>
 
   
@@ -129,15 +129,15 @@ Consistency
   
   <entry>
     <title>MySql Locks</title>
-    <link href="http://192.168.222.128:4001/posts/mysql-locks/" rel="alternate" type="text/html" title="MySql Locks" />
+    <link href="http://0.0.0.0:4001/posts/mysql-locks/" rel="alternate" type="text/html" title="MySql Locks" />
     <published>2021-02-06T00:00:00+08:00</published>
   
     <updated>2021-12-23T14:26:08+08:00</updated>
   
-    <id>http://192.168.222.128:4001/posts/mysql-locks/</id>
-    <content src="http://192.168.222.128:4001/posts/mysql-locks/" />
+    <id>http://0.0.0.0:4001/posts/mysql-locks/</id>
+    <content src="http://0.0.0.0:4001/posts/mysql-locks/" />
     <author>
-      <name>Jamnii</name>
+      <name>JiaMing Shao</name>
     </author>
 
   
@@ -176,15 +176,15 @@ Consistency
   
   <entry>
     <title>Getting Started</title>
-    <link href="http://192.168.222.128:4001/posts/getting-start/" rel="alternate" type="text/html" title="Getting Started" />
+    <link href="http://0.0.0.0:4001/posts/getting-start/" rel="alternate" type="text/html" title="Getting Started" />
     <published>2019-08-09T20:55:00+08:00</published>
   
     <updated>2019-08-10T04:55:00+08:00</updated>
   
-    <id>http://192.168.222.128:4001/posts/getting-start/</id>
-    <content src="http://192.168.222.128:4001/posts/getting-start/" />
+    <id>http://0.0.0.0:4001/posts/getting-start/</id>
+    <content src="http://0.0.0.0:4001/posts/getting-start/" />
     <author>
-      <name>Jamnii</name>
+      <name>JiaMing Shao</name>
     </author>
 
   
@@ -230,15 +230,15 @@ Consistency
   
   <entry>
     <title>How to build you apis</title>
-    <link href="http://192.168.222.128:4001/posts/how-to-build-api/" rel="alternate" type="text/html" title="How to build you apis" />
+    <link href="http://0.0.0.0:4001/posts/how-to-build-api/" rel="alternate" type="text/html" title="How to build you apis" />
     <published>2017-11-12T00:00:00+08:00</published>
   
     <updated>2017-11-12T00:00:00+08:00</updated>
   
-    <id>http://192.168.222.128:4001/posts/how-to-build-api/</id>
-    <content src="http://192.168.222.128:4001/posts/how-to-build-api/" />
+    <id>http://0.0.0.0:4001/posts/how-to-build-api/</id>
+    <content src="http://0.0.0.0:4001/posts/how-to-build-api/" />
     <author>
-      <name>Jamnii</name>
+      <name>JiaMing Shao</name>
     </author>
 
   
