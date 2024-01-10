@@ -1,282 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="http://0.0.0.0:4001/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4001/" rel="alternate" type="text/html" /><updated>2024-01-10T08:33:43+00:00</updated><id>http://0.0.0.0:4001/feed.xml</id><title type="html">PoinTicker Smith</title><subtitle>PoinTicker Smith Blog</subtitle><entry><title type="html">Golang GMP 模型</title><link href="http://0.0.0.0:4001/posts/go-gmp" rel="alternate" type="text/html" title="Golang GMP 模型" /><published>2023-12-21T00:00:00+00:00</published><updated>2023-12-21T00:00:00+00:00</updated><id>http://0.0.0.0:4001/posts/go-gmp</id><content type="html" xml:base="http://0.0.0.0:4001/posts/go-gmp"><![CDATA[<h4 id="前言">前言</h4>
+<p>在 golang 的并发编程中，gmp 是一个重要的概念，它代表了 goroutine、m（线程）和 p（调度器）。
+这个强大的三位一体的并发模型使得 golang 在处理并发任务时非常高效和灵活。
+通过 gmp 的组合，golang 实现了一种高效的并发模型。
+它充分利用了多核处理器的优势，并通过轻量级的 goroutine 实现了高并发的编程模式。
+但是gpm到底是怎么工作的呢？今天这篇文章就为您解开gpm的神秘面纱。</p>
 
+<h4 id="调度器由来">调度器由来</h4>
+<h5 id="单进程系统">单进程系统</h5>
+<p><img src="/images/20231221/go_gmp_01.png" alt="单进程" width="500" /></p>
 
-<feed xmlns="http://www.w3.org/2005/Atom">
-  <id>http://0.0.0.0:4001/</id>
-  <title>JiaMing Shao</title>
-  <subtitle>JiaMing Shao, an old person of low-spirited.</subtitle>
-  <updated>2023-03-13T11:00:19+08:00</updated>
-  <author>
-    <name>JiaMing Shao</name>
-    <uri>http://0.0.0.0:4001/</uri>
-  </author>
-  <link rel="self" type="application/atom+xml" href="http://0.0.0.0:4001/feed.xml"/>
-  <link rel="alternate" type="text/html" hreflang="zh-CN"
-    href="http://0.0.0.0:4001/"/>
-  <generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator>
-  <rights> © 2023 JiaMing Shao </rights>
-  <icon>/assets/img/favicons/favicon.ico</icon>
-  <logo>/assets/img/favicons/favicon-96x96.png</logo>
+<p>早期的计算机都是单进程操作系统，各个进程之间都是顺序执行，也就是进程a执行完了才能执行进程b。</p>
 
+<p style="color: blue">「对于cpu来说，进程和线程是一样的，这里我们就不讨论进程和线程的区别了」</p>
 
-  
-  <entry>
-    <title>CGI、FastCGI、PHP-FPM、Reactor、I/O复用模型</title>
-    <link href="http://0.0.0.0:4001/posts/php-fpm-other/" rel="alternate" type="text/html" title="CGI、FastCGI、PHP-FPM、Reactor、I/O复用模型" />
-    <published>2021-02-25T00:00:00+08:00</published>
-  
-    <updated>2021-02-25T00:00:00+08:00</updated>
-  
-    <id>http://0.0.0.0:4001/posts/php-fpm-other/</id>
-    <content src="http://0.0.0.0:4001/posts/php-fpm-other/" />
-    <author>
-      <name>JiaMing Shao</name>
-    </author>
+<p><b>存在的问题</b></p>
+<ul>
+  <li>单一执行流程，计算机只能一个任务一个任务的处理</li>
+  <li>如果进程a阻塞，会带来很多cpu浪费的时间</li>
+</ul>
 
-  
-    
-    <category term="CGI" />
-    
-  
+<h5 id="多进程线程操作系统">多进程/线程操作系统</h5>
+<p>基于以上的问题，于是就出现了多进程/线程操作系统</p>
 
-  
-    <summary>
-      
+<p><img src="/images/20231221/go_gmp_02.png" alt="多进程/线程操作系统" width="600" /></p>
+
+<ul>
+  <li>系统把cpu分成了一段一段的时间片(微妙级别)</li>
+  <li>cpu在第一个时间片执行进程A，然后切换到进程B执行，再切换到进程C，一直这样轮询的执行</li>
+  <li>因为cpu被分成的时间片是微妙级别的，所以直观的感觉就是进程A，B，C是在同时执行的</li>
+  <li>多进程/线程操作系统的确解决了阻塞的问题，但是又出现了新的问题</li>
+</ul>
 
+<p><b>存在的问题</b></p>
+<ul>
+  <li>因为cpu需要不断地进程A，B，C之间切换，切换肯定避免不了各种复制，计算等消耗，所以在切换过程中浪费掉了很多时间成本，所以「进程/线程越多」，切换「成本就越大」，也就越「浪费」</li>
+  <li>
+    <p>在这种模式下运行CPU在切换动作上浪费的时间成本大概是40%，只有60%的时间是在执行程序</p>
 
+    <p><img src="/images/20231221/go_gpm_03.png" alt="cpu时间成本" width="500" /></p>
+  </li>
+  <li>
+    <p>进程和线程对内存的占用是比较大的，在32位的操作系统中，进程占用的虚拟内存大概是4GB，现成占用内存大概是4M</p>
 
+    <p><img src="/images/20231221/go_gpm_04.png" alt="高消耗=500" width="500" /></p>
+  </li>
+</ul>
 
+<h5 id="协程的诞生">协程的诞生</h5>
+<p>对于一个线程来说其实分为两部分，「用户空间」和「内核空间」。</p>
 
-      CGI、FastCGI、PHP-FPM、Reactor、I/O复用模型
+<ul>
+  <li>内核空间主要是指操作系统底层，包括进程开辟，分配物理内存资源，磁盘资源等。</li>
+  <li>
+    <p>用户空间主要是编码业务逻辑部分</p>
 
-CGI
+    <p><img src="/images/20231221/go_gpm_05.png" alt="一个线程=200" width="200" /></p>
+  </li>
+</ul>
 
-common gateway interface (公共网关接口)
+<p>于是有人想到能不能把线程的内核空间和用户空间分开。并且让他们互相绑定在一起</p>
 
+<p><img src="/images/20231221/go_gpm_06.png" alt="一个线程2=300" width="300" /></p>
 
-  请求模式:
-        Web Brower(浏览器) —-(通过http协议传输)—-&amp;gt; Http Server(服务器nginx/apache) —–&amp;gt; CGI Program —–&amp;gt; Db
+<p>对于cpu来说，只需要关注内核空间的线程就可以了</p>
 
-  Server 与 CGI 通过 STDIN/STDOUT(标准的输入/输出)进行数据传递
+<p>当然如果只是这样把用户空间的协程和内核空间的线程一一绑定还是没有解决问题的，
+如果开启的比较多，那么对应的线程也会跟着一起增加，cpu频繁切换的问题还是没有解决，于是就引入了「调度器」的概念</p>
 
-  nginx(动态加载模块) apache(指定加载模块)
+<p><img src="/images/20231221/go_gpm_07.png" alt="调度器=500" width="500" /></p>
 
+<p>引入调度器来在各个协程之间切换，cpu只需要关注内核空间的线程即可，这样「解决了cpu在各个协程之间不断切换的问题」</p>
 
-CGI工作原理
+<p><b>存在的问题</b></p>
 
+<p>这样设计虽然解决了cpu频繁切换的问题，但是如果协程A发生了阻塞，肯定会导致协程B无法被执行。
+而且如果计算机是多核，那么是无法利用到多核的优势的。显然是不合理的。</p>
 
-  每当客户请求CGI的时候，WEB服务器就请求操作系统生成一个新的CGI解释器进程(如php-cgi.exe)，
+<p>对于多核的计算机，在内核空间可以开启多个线程（具体开启几个由计算内核决定，人为无法控制），
+所以问题的核心点就转移到了协程调度器上面，不管是什么语言，「协程调度器」做的越好，相对的「cpu利用率」也就越高。</p>
 
-  CGI 的一个进程则处理完一个请求后退出，下一个请求来时再创建新进程。
+<p><img src="/images/20231221/go_gpm_08.png" alt="mn关系=500" width="500" /></p>
 
-  当然，这样在访问量很少没有并发的...
-    </summary>
-  
+<h4 id="go对协程的处理">go对协程的处理</h4>
+<p><b>内存控制和灵活调度</b></p>
+<ul>
+  <li>首先golang对协程改名为gorountine，并且把多余的空间都去掉，控制每个协程的内存在几KB大小，所以golang可以开启大量协程</li>
+  <li>
+    <p>golang对协程的调度非常灵活，可以经常在各个协程之间切换</p>
 
-  </entry>
+    <p><img src="/images/20231221/go_gpm_09.png" alt="go对协程的处理=500" width="500" /></p>
+  </li>
+</ul>
 
-  
-  <entry>
-    <title>MySQL Transaction</title>
-    <link href="http://0.0.0.0:4001/posts/mysql-transaction/" rel="alternate" type="text/html" title="MySQL Transaction" />
-    <published>2021-02-20T16:42:00+08:00</published>
-  
-    <updated>2021-02-20T16:42:00+08:00</updated>
-  
-    <id>http://0.0.0.0:4001/posts/mysql-transaction/</id>
-    <content src="http://0.0.0.0:4001/posts/mysql-transaction/" />
-    <author>
-      <name>JiaMing Shao</name>
-    </author>
+<h4 id="go对早期调度器的处理gm模型">go对早期调度器的处理（GM模型）</h4>
+<p>golang在早起调度器处理是比较简单的，具体流程如下:
+<img src="/images/20231221/go_gpm_10.png" alt="go对早期调度器的处理=500" width="500" /></p>
 
-  
-    
-    <category term="MySQL" />
-    
-  
+<ul>
+  <li>首先会有一个全局的go协程队列，并且加锁，防止资源竞争</li>
+  <li>M获取锁之后会去尝试执行gorountine，执行完毕再把gorountine重新放回队列中</li>
+</ul>
 
-  
-    <summary>
-      
+<p><strong>GM模型存在以下问题</strong></p>
+<ul>
+  <li>创建、销毁、调度G都需要每个M获取锁，这就形成了激烈的锁竞争</li>
+  <li>M转移G会造成延迟和额外的系统负载</li>
+  <li>系统调用(cpu在M之间切换)导致频繁的线程阻塞和取消阻塞操作增加了系统开销</li>
+  <li>比如我再一个G中又开辟了一个G1，那么G1和G当然在一个M上执行是比较合适的，因为存在一些共享内存，
+但是显然这种调度模式是无法做到的 基于以上问题，golang针对这块做了一些改进，也就是我们今天的主角，GMP模型。</li>
+</ul>
 
+<h4 id="gmp模型"><b>GMP模型</b></h4>
+<p>GMP模型主要指的是GMP之间的关系</p>
+<ul>
+  <li>G(gorountine协程)，基于协程建立的用户态线程</li>
+  <li>M(machine thread线程)，它直接关联一个os内核线程，用于执行G</li>
+  <li>P(processor处理器)，P里面一般会存当前goroutine运行的上下文环境（函数指针，堆栈地址及地址边界），P会对自己管理的goroutine队列做一些调度</li>
+</ul>
 
+<p><img src="/images/20231221/go_gpm_11.png" alt="GMP" /></p>
 
+<p>全局队列</p>
+<blockquote>
+  <p>存放等待运行的G</p>
+</blockquote>
 
+<p>P的本地队列</p>
+<blockquote>
+  <p>存放等待运行的G</p>
 
-      MySQL 事务主要用于处理操作量大，复杂度高的数据。
+  <p>P的本地队列存放的G是有数量限制的，一般是不超过256G</p>
 
-1. 基础介绍
+  <p>如果创建一个G，是会优先放在p的本地队列中，如果满了则会放到全局队列中去</p>
+</blockquote>
 
-2. ACID
+<p>P列表</p>
+<blockquote>
+  <p>在程序启动的过程时创建</p>
 
-Atomicity
-原子性: 一个事务被视为一个不可分割的最小工作单元 一个事务中的所有操作，要么全部完成，要么全部不完成，不会在中间某个环节结束。
+  <p>最多有GOMAXPROCS个(可配置)</p>
 
-事务在执行过程中发生错误，会被回滚到事务开始前的状态，就像这个事务从来没有执行过一样。
+  <p>可以通过环境变量$GOMAXPROCS来设置P的个数，也可以在程序中通过runtime.GOMAXPROCS()来设置</p>
+</blockquote>
 
-原子性关注状态，要么全部成功，要么全部失败，不存在部分成功的状态
+<p>M列表</p>
+<blockquote>
+  <p>当前操作系统分配到当前go程序的内核线程数</p>
 
-Consistency
-一致性: 在事务开始之前和事务结束以后，数据库数据的一致性约束没有被破坏。 保证在一个事务中的多次操作的数据中间状态,对其他事务不可见的。
+  <p>go语言本身，限制M的最大数量是10000</p>
 
-因为这些中间状态，是一个过渡状态，与事务的开始状态和事务的结束状态是不一致的，一致性关注数据的可见性，中间状态的数据对外部不可见，只有最初状态和最终状态的数据对外可见。
+  <p>可以通过runtime/debug包中的setMaxThreads来设置</p>
 
-(memberA 向 memberB 转 100,在...
-    </summary>
-  
+  <p>如果有一个M阻塞，则会创建一个新的M</p>
 
-  </entry>
+  <p>如果有M空闲，那么会回收或者睡眠</p>
+</blockquote>
 
-  
-  <entry>
-    <title>MySql Locks</title>
-    <link href="http://0.0.0.0:4001/posts/mysql-locks/" rel="alternate" type="text/html" title="MySql Locks" />
-    <published>2021-02-06T00:00:00+08:00</published>
-  
-    <updated>2021-12-23T14:26:08+08:00</updated>
-  
-    <id>http://0.0.0.0:4001/posts/mysql-locks/</id>
-    <content src="http://0.0.0.0:4001/posts/mysql-locks/" />
-    <author>
-      <name>JiaMing Shao</name>
-    </author>
-
-  
-    
-    <category term="MySQL" />
-    
-  
-
-  
-    <summary>
-      
-
-
-
-
+<h4 id="gmp-调度器的设计策略">GMP 调度器的设计策略</h4>
+<h5 id="尽可能复用线程m">尽可能复用线程M</h5>
+<p>避免频繁的线程创建和销毁</p>
 
-      锁是计算机协调多个进程或线程并发访问某一资源的机制。锁保证数据并发访问的一致性、有效性；锁冲突也是影响数据库并发访问性能的一个重要因素。锁是Mysql在服务器层和存储引擎层的的并发控制。
-加锁是消耗资源的，锁的各种操作，包括获得锁、检测锁是否已解除、释放锁等。
+<h5 id="work-stealing-机制--复用机制">work stealing 机制 | 复用机制</h5>
+<p><img src="/images/20231221/go_gpm_12.png" alt="work_stealing=500" width="500" /></p>
 
-锁的类型
-这里主要介绍表锁和行锁。
+<p>M1对应的P上面G1正在执行，G2和G3处于等待中的状态，M2对应的P处于空闲状态。</p>
 
-表锁
-表锁由 MySQL Server 实现，一般在执行 DDL(Data Definition Language) 语句时会对整个表进行加锁，
-比如说 ALTER,UPDATE TABLE 等操作。
-在执行 SQL 语句时，也可以明确指定对某个表进行加锁。
-表锁使用的是一次性锁技术,只能访问加锁的表，不能访问其他表，直到最后通过 unlock tables 释放所有表锁
-|-------
-| read  |
-|--------------------------------------...
-    </summary>
-  
+<p><img src="/images/20231221/go_gpm_13.png" alt="work_stealing2=500" width="500" /></p>
 
-  </entry>
+<p>这种情况下M2对应的P会从M1对应的P的本地队列中把G3偷取过来执行，
+提高CPU的利用率，这种机制叫做「work stealing机制」。</p>
 
-  
-  <entry>
-    <title>Getting Started</title>
-    <link href="http://0.0.0.0:4001/posts/getting-start/" rel="alternate" type="text/html" title="Getting Started" />
-    <published>2019-08-09T20:55:00+08:00</published>
-  
-    <updated>2019-08-10T04:55:00+08:00</updated>
-  
-    <id>http://0.0.0.0:4001/posts/getting-start/</id>
-    <content src="http://0.0.0.0:4001/posts/getting-start/" />
-    <author>
-      <name>JiaMing Shao</name>
-    </author>
+<p>获取G的机制: P的本地队列 &gt; 全局队列 &gt; 其他P的本地队列</p>
 
-  
-    
-    <category term="Blogging" />
-    
-    <category term="Tutorial" />
-    
-  
+<h5 id="hand-off-机制">hand off 机制</h5>
+<p>如果M1和M2都在正常执行，但是M1对应的G1发生了阻塞，那么势必会影响到G2的执行，那么GMP是如何解决的呢？</p>
 
-  
-    <summary>
-      
+<p><img src="/images/20231221/go_gpm_14.png" alt="hand_off=400" width="400" /></p>
 
+<p>golang会新创建一个M3，用来接管之前的P1剩下的G(G2)</p>
 
+<p>M1和G1进行绑定再继续执行，执行完毕之后把M1设置为睡眠状态等待下一次被利用，或者直接销毁</p>
 
+<p><img src="/images/20231221/go_gpm_15.png" alt="hand_off2=400" width="400" /></p>
 
+<h5 id="并行利用">并行利用</h5>
+<p>并行利用其实比较好理解，其实也就是开启了多少个P，P的个数是有 GOMAXPROCS 来决定的，一般都会设置为 「CPU核数/2」</p>
 
-      
-  Prerequisites
-  Installation    
-      Creating a New Site        
-          Option 1. Using the Chirpy Starter
-          Option 2. Forking on GitHub
-        
-      
-      Installing Dependencies
-    
-  
-  Usage    
-      Configuration
-      Customing Stylesheet
-      Running Local Server
-      Deployment        
-          Deploy by Using Github Actions
-          Manually Build and Deploy
-  ...
-    </summary>
-  
+<h5 id="协作的抢占机制">协作的抢占机制</h5>
+<p>对于传统的co-routine来说,如果一个C和cpu进行了绑定，那么只有他主动释放，另外一个C才能和cpu进行绑定。
+但是在golang中，如果一个G和cpu进行了绑定，那么时间限制最多为10ms，另外一个G就可以直接和cpu绑定。</p>
 
-  </entry>
+<p><img src="/images/20231221/go_gpm_16.png" alt="抢占策略=400" width="400" /></p>
 
-  
-  <entry>
-    <title>How to build you apis</title>
-    <link href="http://0.0.0.0:4001/posts/how-to-build-api/" rel="alternate" type="text/html" title="How to build you apis" />
-    <published>2017-11-12T00:00:00+08:00</published>
-  
-    <updated>2017-11-12T00:00:00+08:00</updated>
-  
-    <id>http://0.0.0.0:4001/posts/how-to-build-api/</id>
-    <content src="http://0.0.0.0:4001/posts/how-to-build-api/" />
-    <author>
-      <name>JiaMing Shao</name>
-    </author>
+<p>基于信号的真抢占机制：</p>
 
-  
-    
-    <category term="api" />
-    
-  
+<p>协作墙占机制已经解决了绝大部分的饥饿问题，但是还是有部分情况下，Go调度器有无法被抢占的情况，
+例如，for 循环或者垃圾回收长时间占用线程，为了解决这些问题，
+Go1.14 引入了基于信号的抢占式调度机制，能够解决 GC 垃圾回收和栈扫描时存在的问题。</p>
 
-  
-    <summary>
-      
+<h5 id="全局队列">全局队列</h5>
+<p><img src="/images/20231221/go_gpm_17.png" alt="全局队列=400" width="400" />
+全局队列的本质是对work stealing的一种补充</p>
 
+<p>如上图，M2对应的本地队列没有G，会优先从M1的本地队列中偷取</p>
 
+<p>如果M1的本地队列中也没有G，那么就会从全局队列中去偷取G3</p>
 
+<p>因为全局队列涉及到加锁和解锁，所以效率相对要低一些</p>
 
+<h4 id="go的启动周期m0和g0">go的启动周期（M0和G0）</h4>
+<p>要想了解go的启动周期，首先得了解M0和G0的概念</p>
 
-      如何构建自己的api，即不臃肿，也不让人讨厌！
+<p><strong>M0</strong></p>
+<ul>
+  <li>在一个进程中是唯一的</li>
+  <li>启动程序后编号为0的主线程</li>
+  <li>在全局变量 runtime.m0 中，不需要在 heap 上分配</li>
+  <li>负责初始化操作和启动第一个G</li>
+  <li>启动第一个G之后，M0就和其他的M一样了</li>
+</ul>
 
-1  : 数据构建
+<p><strong>G0</strong></p>
+<ul>
+  <li>在一个线程中是唯一的</li>
+  <li>每次启动一个M，都会第一个创建的gorountine，就是G0</li>
+  <li>G0仅仅用于负责调度其他G，G0不指向任何可执行的函数</li>
+  <li>每个M都会有一个自己的G0</li>
+  <li>在调度或者系统调用的时候，会使用M切换到G0来调度</li>
+  <li>M0的G0会放在全局空间</li>
+</ul>
 
-快速构建安全可用的基础数据，fork data，保证 api 数据完整性！
+<p>执行流程</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>package main
+import "fmt"
 
-2  : 规划和创造端点
+func main() {
+ fmt.Println("Hello World")
+}
+</code></pre></div></div>
 
-端点理论:将操作计划转换为实际端点需要的功能(参照:REST-FULL API的理论和命名约定的最佳实践)
-API资源应该避免输出自增变量,而是唯一标识
-TDD[测试驱动开发（Test-Driven Development）]开发模式
+<p>在执行到main函数之前，会有一些初始化的操作，比如创建M0，创建G0等等。</p>
 
-2.1 POST 和 PUT 的区别!
+<p><img src="/images/20231221/go_gpm_18.png" alt="执行流程=400" width="400" /></p>
 
-PUT是在您事先知道整个URL并且操作是幂等的情况下使用的。(幂等性是一个很花哨的词，意思是“可以一遍又一遍地做而不会产生不同的结果”)
-复数、单数还是两者都有?( /user/1[用户1的信息]  /users[所有用户|1,2用户信息])
-一个谓词是一个操作,一个执行术语,我们的API只需要一个谓词—HTTP方法。所有其他动词都需...
-    </summary>
-  
+<p>当执行main函数的时候，M0已经和其他的M是一样的了，main函数会进入M0对应的p的本地队列中，
+然后和M0绑定执行，如果执行超时(10ms)，则会重新放到M0对应的本地队列中。一直到执行到exit或者panic为止。</p>
 
-  </entry>
+<p><img src="/images/20231221/go_gpm_20.png" alt="执行流程2=400" width="400" /></p>
 
-</feed>
+<p><img src="/images/20231221/go_gpm_24.png" alt="执行流程3=400" width="400" /></p>
 
+<h4 id="go-func-创建过程">go func(){} 创建过程</h4>
+<p><img src="/images/20231221/go_gpm_21.jpeg" alt="go_func=700" width="700" /></p>
 
+<h5 id="创建一个-go-func">创建一个 go func(){}</h5>
+<p><img src="/images/20231221/go_gpm_22.jpg" alt="go_func1=700" width="700" /></p>
+
+<h5 id="创建多个-go-func">创建多个 go func(){}</h5>
+<p><img src="/images/20231221/go_gpm_21.jpg" alt="go_func2=700" width="700" /></p>
+
+<h5 id="go-的状态">go 的状态</h5>
+<p><img src="/images/20231221/go_gpm_23.jpg" alt="go_func3" width="400px" /></p>
+
+<p>虽然 G 在运行时中定义的状态较多且复杂，但是我们可以将这些不同的状态聚合成三种：等待中、可运行、运行中，
+分别由_Gwaiting、_Grunnable、_Grunning 三种状态表示，运行期间大部分情况是在这三种状态来回切换。</p>
+
+<h4 id="参考链接">参考链接</h4>
+<ul>
+  <li><a href="https://www.modb.pro/db/631394">https://www.modb.pro/db/631394</a></li>
+  <li><a href="https://blog.csdn.net/fengxiandada/article/details/129461300">https://blog.csdn.net/fengxiandada/article/details/129461300</a></li>
+  <li><a href="https://zhuanlan.zhihu.com/p/586236582">https://zhuanlan.zhihu.com/p/586236582</a></li>
+</ul>]]></content><author><name></name></author><category term="golang" /><summary type="html"><![CDATA[前言 在 golang 的并发编程中，gmp 是一个重要的概念，它代表了 goroutine、m（线程）和 p（调度器）。 这个强大的三位一体的并发模型使得 golang 在处理并发任务时非常高效和灵活。 通过 gmp 的组合，golang 实现了一种高效的并发模型。 它充分利用了多核处理器的优势，并通过轻量级的 goroutine 实现了高并发的编程模式。 但是gpm到底是怎么工作的呢？今天这篇文章就为您解开gpm的神秘面纱。 调度器由来 单进程系统 早期的计算机都是单进程操作系统，各个进程之间都是顺序执行，也就是进程a执行完了才能执行进程b。 「对于cpu来说，进程和线程是一样的，这里我们就不讨论进程和线程的区别了」 存在的问题 单一执行流程，计算机只能一个任务一个任务的处理 如果进程a阻塞，会带来很多cpu浪费的时间 多进程/线程操作系统 基于以上的问题，于是就出现了多进程/线程操作系统 系统把cpu分成了一段一段的时间片(微妙级别) cpu在第一个时间片执行进程A，然后切换到进程B执行，再切换到进程C，一直这样轮询的执行 因为cpu被分成的时间片是微妙级别的，所以直观的感觉就是进程A，B，C是在同时执行的 多进程/线程操作系统的确解决了阻塞的问题，但是又出现了新的问题 存在的问题 因为cpu需要不断地进程A，B，C之间切换，切换肯定避免不了各种复制，计算等消耗，所以在切换过程中浪费掉了很多时间成本，所以「进程/线程越多」，切换「成本就越大」，也就越「浪费」 在这种模式下运行CPU在切换动作上浪费的时间成本大概是40%，只有60%的时间是在执行程序 进程和线程对内存的占用是比较大的，在32位的操作系统中，进程占用的虚拟内存大概是4GB，现成占用内存大概是4M 协程的诞生 对于一个线程来说其实分为两部分，「用户空间」和「内核空间」。 内核空间主要是指操作系统底层，包括进程开辟，分配物理内存资源，磁盘资源等。 用户空间主要是编码业务逻辑部分 于是有人想到能不能把线程的内核空间和用户空间分开。并且让他们互相绑定在一起 对于cpu来说，只需要关注内核空间的线程就可以了 当然如果只是这样把用户空间的协程和内核空间的线程一一绑定还是没有解决问题的， 如果开启的比较多，那么对应的线程也会跟着一起增加，cpu频繁切换的问题还是没有解决，于是就引入了「调度器」的概念 引入调度器来在各个协程之间切换，cpu只需要关注内核空间的线程即可，这样「解决了cpu在各个协程之间不断切换的问题」 存在的问题 这样设计虽然解决了cpu频繁切换的问题，但是如果协程A发生了阻塞，肯定会导致协程B无法被执行。 而且如果计算机是多核，那么是无法利用到多核的优势的。显然是不合理的。 对于多核的计算机，在内核空间可以开启多个线程（具体开启几个由计算内核决定，人为无法控制）， 所以问题的核心点就转移到了协程调度器上面，不管是什么语言，「协程调度器」做的越好，相对的「cpu利用率」也就越高。 go对协程的处理 内存控制和灵活调度 首先golang对协程改名为gorountine，并且把多余的空间都去掉，控制每个协程的内存在几KB大小，所以golang可以开启大量协程 golang对协程的调度非常灵活，可以经常在各个协程之间切换 go对早期调度器的处理（GM模型） golang在早起调度器处理是比较简单的，具体流程如下: 首先会有一个全局的go协程队列，并且加锁，防止资源竞争 M获取锁之后会去尝试执行gorountine，执行完毕再把gorountine重新放回队列中 GM模型存在以下问题 创建、销毁、调度G都需要每个M获取锁，这就形成了激烈的锁竞争 M转移G会造成延迟和额外的系统负载 系统调用(cpu在M之间切换)导致频繁的线程阻塞和取消阻塞操作增加了系统开销 比如我再一个G中又开辟了一个G1，那么G1和G当然在一个M上执行是比较合适的，因为存在一些共享内存， 但是显然这种调度模式是无法做到的 基于以上问题，golang针对这块做了一些改进，也就是我们今天的主角，GMP模型。 GMP模型 GMP模型主要指的是GMP之间的关系 G(gorountine协程)，基于协程建立的用户态线程 M(machine thread线程)，它直接关联一个os内核线程，用于执行G P(processor处理器)，P里面一般会存当前goroutine运行的上下文环境（函数指针，堆栈地址及地址边界），P会对自己管理的goroutine队列做一些调度 全局队列 存放等待运行的G P的本地队列 存放等待运行的G P的本地队列存放的G是有数量限制的，一般是不超过256G 如果创建一个G，是会优先放在p的本地队列中，如果满了则会放到全局队列中去 P列表 在程序启动的过程时创建 最多有GOMAXPROCS个(可配置) 可以通过环境变量$GOMAXPROCS来设置P的个数，也可以在程序中通过runtime.GOMAXPROCS()来设置 M列表 当前操作系统分配到当前go程序的内核线程数 go语言本身，限制M的最大数量是10000 可以通过runtime/debug包中的setMaxThreads来设置 如果有一个M阻塞，则会创建一个新的M 如果有M空闲，那么会回收或者睡眠 GMP 调度器的设计策略 尽可能复用线程M 避免频繁的线程创建和销毁 work stealing 机制 | 复用机制 M1对应的P上面G1正在执行，G2和G3处于等待中的状态，M2对应的P处于空闲状态。 这种情况下M2对应的P会从M1对应的P的本地队列中把G3偷取过来执行， 提高CPU的利用率，这种机制叫做「work stealing机制」。 获取G的机制: P的本地队列 &gt; 全局队列 &gt; 其他P的本地队列 hand off 机制 如果M1和M2都在正常执行，但是M1对应的G1发生了阻塞，那么势必会影响到G2的执行，那么GMP是如何解决的呢？ golang会新创建一个M3，用来接管之前的P1剩下的G(G2) M1和G1进行绑定再继续执行，执行完毕之后把M1设置为睡眠状态等待下一次被利用，或者直接销毁 并行利用 并行利用其实比较好理解，其实也就是开启了多少个P，P的个数是有 GOMAXPROCS 来决定的，一般都会设置为 「CPU核数/2」 协作的抢占机制 对于传统的co-routine来说,如果一个C和cpu进行了绑定，那么只有他主动释放，另外一个C才能和cpu进行绑定。 但是在golang中，如果一个G和cpu进行了绑定，那么时间限制最多为10ms，另外一个G就可以直接和cpu绑定。 基于信号的真抢占机制： 协作墙占机制已经解决了绝大部分的饥饿问题，但是还是有部分情况下，Go调度器有无法被抢占的情况， 例如，for 循环或者垃圾回收长时间占用线程，为了解决这些问题， Go1.14 引入了基于信号的抢占式调度机制，能够解决 GC 垃圾回收和栈扫描时存在的问题。 全局队列 全局队列的本质是对work stealing的一种补充 如上图，M2对应的本地队列没有G，会优先从M1的本地队列中偷取 如果M1的本地队列中也没有G，那么就会从全局队列中去偷取G3 因为全局队列涉及到加锁和解锁，所以效率相对要低一些 go的启动周期（M0和G0） 要想了解go的启动周期，首先得了解M0和G0的概念 M0 在一个进程中是唯一的 启动程序后编号为0的主线程 在全局变量 runtime.m0 中，不需要在 heap 上分配 负责初始化操作和启动第一个G 启动第一个G之后，M0就和其他的M一样了 G0 在一个线程中是唯一的 每次启动一个M，都会第一个创建的gorountine，就是G0 G0仅仅用于负责调度其他G，G0不指向任何可执行的函数 每个M都会有一个自己的G0 在调度或者系统调用的时候，会使用M切换到G0来调度 M0的G0会放在全局空间 执行流程 package main import "fmt" func main() { fmt.Println("Hello World") } 在执行到main函数之前，会有一些初始化的操作，比如创建M0，创建G0等等。 当执行main函数的时候，M0已经和其他的M是一样的了，main函数会进入M0对应的p的本地队列中， 然后和M0绑定执行，如果执行超时(10ms)，则会重新放到M0对应的本地队列中。一直到执行到exit或者panic为止。 go func(){} 创建过程 创建一个 go func(){} 创建多个 go func(){} go 的状态 虽然 G 在运行时中定义的状态较多且复杂，但是我们可以将这些不同的状态聚合成三种：等待中、可运行、运行中， 分别由_Gwaiting、_Grunnable、_Grunning 三种状态表示，运行期间大部分情况是在这三种状态来回切换。 参考链接 https://www.modb.pro/db/631394 https://blog.csdn.net/fengxiandada/article/details/129461300 https://zhuanlan.zhihu.com/p/586236582]]></summary></entry><entry><title type="html">高内聚低耦合</title><link href="http://0.0.0.0:4001/posts/hight-low-design" rel="alternate" type="text/html" title="高内聚低耦合" /><published>2017-03-15T00:00:00+00:00</published><updated>2017-03-15T00:00:00+00:00</updated><id>http://0.0.0.0:4001/posts/hight-low-design</id><content type="html" xml:base="http://0.0.0.0:4001/posts/hight-low-design"><![CDATA[<p>模块之间存在依赖， 导致改动可能会互相影响， 关系越紧密， 耦合越强， 模块独立性越差。
+模块内部的元素，关联性越强， 则内聚越高， 模块单一性更强。</p>
+
+<h3 id="模块">模块</h3>
+
+<p>模块就是从逻辑上将系统分解为更细微的部分， 分而治之， 复杂问题拆解为若干简单问题， 逐个解决。</p>
+
+<p>耦合主要描述模块之间的关系， 内聚主要描述模块内部。 模块的粒度可大可小， 可以是函数， 类， 功能块等等。</p>
+
+<h3 id="耦合">耦合</h3>
+
+<p>模块之间存在依赖， 导致改动可能会互相影响， 关系越紧密， 耦合越强， 模块独立性越差。</p>
+
+<p>比如模块A直接操作了模块B中数据， 则视为强耦合， 若A只是通过数据与模块B交互， 则视为弱耦合。</p>
+
+<p>独立的模块便于扩展， 维护， 写单元测试， 如果模块之间重重依赖， 会极大降低开发效率。</p>
+
+<p><img src="/images/20170315/1732014031.gif" alt="640.gif" /></p>
+
+<h3 id="内聚">内聚</h3>
+
+<p>模块内部的元素， 关联性越强， 则内聚越高， 模块单一性更强。 一个模块应当尽可能独立完成某个功能，</p>
+
+<p>如果有各种场景需要被引入到当前模块， 代码质量将变得非常脆弱， 这种情况建议拆分为多个模块。</p>
+
+<p>低内聚的模块代码， 不管是维护， 扩展还是重构都相当麻烦， 难以下手。</p>
+
+<p><img src="/images/20170315/2942821336.gif" alt="640 (1).gif" /></p>
+
+<h3 id="接口设计原则">接口设计原则</h3>
+
+<p>好的接口应当满足设计模式六大原则， 很多设计模式， 框架都是基于高内聚低耦合这个出发点的。</p>
+
+<ul>
+  <li>单一职责原则：一个类只负责一个功能领域中的相应职责。</li>
+  <li>开闭原则：一个软件实体应当对扩展开放，对修改关闭。</li>
+  <li>里氏代换原则：所有引用基类（父类）的地方必须能透明地使用其子类的对象。</li>
+  <li>依赖倒转原则：抽象不应该依赖于细节， 细节应当依赖于抽象。 换言之， 要针对接口编程， 而不是针对实现编程。</li>
+  <li>接口隔离原则：使用多个专门的接口， 而不使用单一的总接口， 即客户端不应该依赖那些它不需要的接口。</li>
+  <li>迪米特法则： 一个软件实体应当尽可能少地与其他实体发生相互作用， 例如外观模式， 对外暴露统一接口。</li>
+</ul>
+
+<h3 id="举几个栗子">举几个栗子</h3>
+
+<h4 id="外观模式">外观模式</h4>
+
+<p>为系统中多个子系统提供一致的对外调用， 对客户端隐藏子系统细节， 降低其与子系统的耦合。</p>
+
+<p><img src="/images/20170315/107262251.jpg" alt="6402.jpg" /></p>
+
+<h4 id="桥接模式">桥接模式</h4>
+
+<p>JDBC中的把面向厂商的接口(Driver)和面向使用者的API(DriverManager)做了拆分隔离。</p>
+
+<p><img src="/images/20170315/3181456104.jpg" alt="6403.jpg" /></p>
+
+<h4 id="适配器模式">适配器模式</h4>
+
+<p>引入第三方库(hibernate， log4j)， 不应该直接在代码中继承或者使用其实体类。
+需要抽出上层统一接口， 然后增加实现类， 对外暴露接口。</p>
+
+<p><img src="/images/20170315/563142807.jpg" alt="6404.jpg" /></p>
+
+<h3 id="来源">来源</h3>
+
+<p>作者：大道方圆 <a href="http://cnblogs.com/xdecode/p/9393885.html">Link</a></p>]]></content><author><name></name></author><category term="Design" /><summary type="html"><![CDATA[模块之间存在依赖， 导致改动可能会互相影响， 关系越紧密， 耦合越强， 模块独立性越差。 模块内部的元素，关联性越强， 则内聚越高， 模块单一性更强。 模块 模块就是从逻辑上将系统分解为更细微的部分， 分而治之， 复杂问题拆解为若干简单问题， 逐个解决。 耦合主要描述模块之间的关系， 内聚主要描述模块内部。 模块的粒度可大可小， 可以是函数， 类， 功能块等等。 耦合 模块之间存在依赖， 导致改动可能会互相影响， 关系越紧密， 耦合越强， 模块独立性越差。 比如模块A直接操作了模块B中数据， 则视为强耦合， 若A只是通过数据与模块B交互， 则视为弱耦合。 独立的模块便于扩展， 维护， 写单元测试， 如果模块之间重重依赖， 会极大降低开发效率。 内聚 模块内部的元素， 关联性越强， 则内聚越高， 模块单一性更强。 一个模块应当尽可能独立完成某个功能， 如果有各种场景需要被引入到当前模块， 代码质量将变得非常脆弱， 这种情况建议拆分为多个模块。 低内聚的模块代码， 不管是维护， 扩展还是重构都相当麻烦， 难以下手。 接口设计原则 好的接口应当满足设计模式六大原则， 很多设计模式， 框架都是基于高内聚低耦合这个出发点的。 单一职责原则：一个类只负责一个功能领域中的相应职责。 开闭原则：一个软件实体应当对扩展开放，对修改关闭。 里氏代换原则：所有引用基类（父类）的地方必须能透明地使用其子类的对象。 依赖倒转原则：抽象不应该依赖于细节， 细节应当依赖于抽象。 换言之， 要针对接口编程， 而不是针对实现编程。 接口隔离原则：使用多个专门的接口， 而不使用单一的总接口， 即客户端不应该依赖那些它不需要的接口。 迪米特法则： 一个软件实体应当尽可能少地与其他实体发生相互作用， 例如外观模式， 对外暴露统一接口。 举几个栗子 外观模式 为系统中多个子系统提供一致的对外调用， 对客户端隐藏子系统细节， 降低其与子系统的耦合。 桥接模式 JDBC中的把面向厂商的接口(Driver)和面向使用者的API(DriverManager)做了拆分隔离。 适配器模式 引入第三方库(hibernate， log4j)， 不应该直接在代码中继承或者使用其实体类。 需要抽出上层统一接口， 然后增加实现类， 对外暴露接口。 来源 作者：大道方圆 Link]]></summary></entry></feed>

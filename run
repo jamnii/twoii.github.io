@@ -1,9 +1,0 @@
-#!/bin/bash
-sudo bundle exec jekyll serve --trace -H 0.0.0.0 -P 4001
-
-# 这里是源码
-# git deploy 采用的是 html 代码
-# 将 _site 提交到 github 的网站项目
-
-# _site name.github.io 的访问代码
-# source 源码,用于写作和生成 _site
