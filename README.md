@@ -21,3 +21,38 @@ categories:
 tags:
 ---
 ```
+
+#### Menu
+One:
+```
+cd project
+
+touch new.html
+
+vi _config.yml
+    navigation:
+      - title: New
+        url: /new.html
+```
+
+Two:
+```
+cd project
+
+touch new.md
+vi new.md
+    ---
+    title: New
+    layout: new
+    ---
+
+cd _layouts
+
+touch new.html
+vi new.html
+    ---
+    layout: default
+    ---
+    
+    This is new
+```
